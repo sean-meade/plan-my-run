@@ -9,6 +9,57 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <header>
+    <nav>
+      <a href="#"><h1>PLAN MY RUN</h1></a>
+    </nav>
+  </header>
+
+  <!-- Hero Image -->
+  <section id="hero-outer">
+    <div id="hero-image"></div>
+  </section>
+
+  <!-- Location input -->
+  <section>
+    <h2>Where are you starting?</h2>
+    <form action="">
+      <input type="text" name="location" id="search-location">
+      <input type="button" value="Search">
+      <p>OR</p>
+      <input type="button" value="Use Current Location">
+    </form>
+  </section>
+
+  <!-- Weather input -->
+  <section>
+    <h2>What Day & Time?</h2>
+    <form action="">
+      <p>
+        On
+        <select name="day" id="day">
+          <option value=""></option>
+        </select>
+        at
+        <select name="time" id="time">
+          <option value=""></option>
+        </select>
+      </p>
+    </form>
+  </section>
+
+  <!-- Plan Route -->
+  <section>
+    <h2>Plan Your Route:</h2>
+    <label for="looped-route">Looped Route:</label>
+    <input type="checkbox" name="looped-route" id="looped-route">
+    <iframe src="" frameborder="0"></iframe>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p><a href="https://github.com/sean-meade">&copy; The Nerd Outdoorsman</a></p>
+  </footer>
+
 </body>
 </html>
