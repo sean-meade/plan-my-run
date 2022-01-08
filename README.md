@@ -247,7 +247,6 @@ The Following Validator with the same error:
 
 Before deploying the application, install the following:
 
-- Python 3
 - Git
 
 ### Local Deployment
