@@ -1,4 +1,4 @@
-# Gift Of Giving
+# Plan My Run
 
 [NAME](link-to-website) is a website which allows charities to request gifts for the children during the holiday season as well as for the donators to support the charities by choosing the gift they would like to donate.  
 
@@ -181,6 +181,60 @@ The website is designed as a one page application.
 
 ## Testing
 
+## Functional Testing
+
+TC001 
+
+**Description**
+
+Test something.
+
+**Steps**
+
+- Navigate to https://website
+- 
+
+**Expected**
+
+This happened
+
+**Actual**
+
+This happened
+
+![TC001](img-of-test)
+
+<hr>
+
+TC002
+
+
+## Validator Testing
+
+### CSS
+
+Base Css
+
+![Base CSS](docs/testing/base_css.JPG)
+
+### JavaScript
+
+Base JS
+
+![Base JS](docs/testing/base_js.JPG)
+
+### HTML
+
+The following Validated with no errors:
+- Home Page
+- 
+
+![Success](docs/testing/html_validator.JPG)
+
+The Following Validator with the same error:
+- The something page
+
+![Error](docs/testing/edit_gift_add.JPG)
 
 
 [Back to content](#contents)
