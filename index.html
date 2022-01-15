@@ -9,6 +9,9 @@
   <title>Document</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+  <script src="/assets/js/map.js"></script>
 </head>
 <body>
   <!-- Header Section -->
@@ -67,13 +70,20 @@
     </div>
     <label for="looped-route">Looped Route:</label>
     <input type="checkbox" name="looped-route" id="looped-route">
-    <iframe src="" frameborder="0"></iframe>
   </section>
+
+  <section id="map-section">
+    <div id="map"></div>
+  </section>
+  
+  
 
   <!-- Footer -->
   <footer>
     <p><a href="https://github.com/sean-meade">&copy; The Nerd Outdoorsman</a></p>
   </footer>
+
+  
 
 </body>
 </html>
