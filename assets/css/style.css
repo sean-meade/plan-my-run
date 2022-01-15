@@ -56,7 +56,7 @@ header a {
 #hero-image {
   min-height: 28rem;
   width: 100%;
-  background: url("/assets/images/the-road-is-long.jpg") no-repeat center center;
+  background: url("assets/images/the-road-is-long.jpg") no-repeat center center;
   background-size: cover;
 }
 
