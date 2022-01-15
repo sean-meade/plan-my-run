@@ -11,7 +11,11 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
-  <script src="/assets/js/map.js"></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
+  <script src="/assets/js/search-location.js"></script>
+  <script src="/assets/js/on-window-load.js"></script>
+  
 </head>
 <body>
   <!-- Header Section -->
@@ -35,8 +39,7 @@
       <h2>Where are you starting?</h2>
     </div>
     <form action="">
-      <input type="text" name="location" id="search-location">
-      <input type="button" value="Search">
+      <div id="geocoder"></div>
       <p>OR</p>
       <input type="button" value="Use Current Location">
     </form>
@@ -83,7 +86,7 @@
     <p><a href="https://github.com/sean-meade">&copy; The Nerd Outdoorsman</a></p>
   </footer>
 
-  
+  <script src="/assets/js/search-location.js"></script>
 
 </body>
 </html>
