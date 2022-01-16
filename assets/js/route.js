@@ -52,25 +52,17 @@ function useCurrentLocation(e) {
   );
 }
 
-// a geoJSON feature collection to track clicks to add markers to map
-var clicks = turf.featureCollection([]);
-
-// When map is clicked collect lat and lng
-map.on("click", function (e) {
-  var coords = e.lngLat;
-  var click = [coords.lng, coords.lat];
-  // click to clicks
-  clicks.features.push(click);
-  console.log();
-  if (clicks.features.length == 1) {
-      // add layer to first click
-      map.getSource('starting-point').setData(turf.featureCollection([turf.point(click)]));
-  }
-}); // map on click
+// function that simply adds a marker where clicked
+function addMarker(clicks) {
+  map.getSource("route-points").setData(clicks);
+}
 
 // Set first click or current location with starting point symbol
-// Create layer for it when map has loaded:
+// Create layers of start point and route points when map has loaded:
 map.on("load", function () {
+  // a geoJSON feature collection to track clicks to add markers to map
+  var clicks = turf.featureCollection([]);
+
   map.addLayer({
     id: "starting-point",
     type: "circle",
@@ -85,5 +77,46 @@ map.on("load", function () {
       "circle-stroke-width": 3,
     },
   });
-});
 
+  // Add layer that will be used to mark clicks as dots
+  // for the click route
+  map.addLayer({
+    id: "route-points",
+    type: "symbol",
+    source: {
+      data: clicks,
+      type: "geojson",
+    },
+    layout: {
+      "icon-allow-overlap": true,
+      "icon-ignore-placement": true,
+      "icon-image": "marker-15",
+    },
+  });
+
+  // When map is clicked collect lat and lng
+  map.on("click", function (e) {
+    var coords = e.lngLat;
+    var click = [coords.lng, coords.lat];
+
+    // set the click as a geoJSON feature
+    var pt = turf.point([click[0], click[1]], {
+      orderTime: Date.now(),
+      key: Math.random(),
+    });
+    
+    // click to clicks
+    clicks.features.push(pt);
+
+    if (clicks.features.length === 1) {
+      // add layer to first click
+      map
+        .getSource("starting-point")
+        .setData(turf.featureCollection([turf.point(click)]));
+    } else {
+      console.log(clicks);
+      // add click to route-points layer
+      addMarker(clicks);
+    }
+  }); // map on click
+});
