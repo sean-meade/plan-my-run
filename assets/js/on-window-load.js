@@ -7,32 +7,11 @@ mapboxgl.accessToken =
 */
 window.onload = function () {
 
-  /* 
-    Search Location
-    https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder-no-map/
-  */
+  // Create GeoCoder
+  let geocoder = createGeoCoder(); 
 
-  // Create search field for location 
-  const geocoder = new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken,
-    types: "country,region,place,postcode,locality,neighborhood",
-  });
-
-  // Add geocoder to div
-  geocoder.addTo("#geocoder"); 
-
-  if (!mapboxgl.supported()) {
-    // If it's not alert user
-    alert("Your browser does not support Mapbox GL");
-  } else {
-    // If it is load map
-    const map = new mapboxgl.Map({
-      container: "map",
-      style: "mapbox://styles/mapbox/streets-v11",
-      center: [-74.5, 40],
-      zoom: 9,
-    });
-  }
+  // Create Map
+  let map = checkMapboxSupport()
   
   // Add geocoder result as center of map.
   geocoder.on("result", (e) => {

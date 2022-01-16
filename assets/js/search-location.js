@@ -1,16 +1,21 @@
 /* 
-  Search Location
-  https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder-no-map/
+    Search Location
+    https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder-no-map/
 */
-function searchLocation(accToken, map) {
+
+function createGeoCoder() {
+  // Create search field for location 
   const geocoder = new MapboxGeocoder({
-    accessToken: accToken,
+    accessToken: mapboxgl.accessToken,
     types: "country,region,place,postcode,locality,neighborhood",
   });
-  
-  
-  
-  
 
-   
+  // Add geocoder to div
+  geocoder.addTo("#geocoder");
+
+  return geocoder;
+}
+
+function useCurrentLocation() {
+  
 }
