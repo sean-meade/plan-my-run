@@ -39,8 +39,14 @@ function getCurrentLocation() {
         center: currentLoc,
       });
 
+      // use current Location as start
       useCurrentLocation = true;
+      // add it to route
       route.push(currentLoc);
+
+
+      var geoJSON_currentLoc = turf.featureCollection([turf.point(currentLoc)]);
+      setStartingPoint(currentLoc, geoJSON_currentLoc);
     },
     noCurrentLocation,
     {
