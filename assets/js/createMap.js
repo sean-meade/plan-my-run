@@ -1,12 +1,10 @@
 /* Check and see if browser supports Mapbox */
 function checkMapboxSupport() {
   if (!mapboxgl.supported()) {
-    console.log("Doesnt work");
     // If it's not alert user
     alert("Your browser does not support Mapbox GL");
     return false;
   } else {
-    console.log("Does work");
     // If it is load map
     const map = new mapboxgl.Map({
       container: "map",
@@ -17,6 +15,4 @@ function checkMapboxSupport() {
     
     return map;
   }
-
-  
 }

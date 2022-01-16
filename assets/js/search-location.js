@@ -4,7 +4,7 @@
 */
 
 function createGeoCoder() {
-  // Create search field for location 
+  // Create search field for location
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     types: "country,region,place,postcode,locality,neighborhood",
@@ -16,16 +16,32 @@ function createGeoCoder() {
   return geocoder;
 }
 
-function ceneterMapOnSearch(map) {
+function centerMapOnSearch(e, map) {
   // Add geocoder result as center of map.
-  geocoder.on("result", (e) => {
-    let chosenLocation = e.result.center;
-    map.flyTo({
-      center: chosenLocation,
-    });
+  let chosenLocation = e.result.center;
+  map.flyTo({
+    center: chosenLocation,
   });
 }
 
 function noCurrentLocation() {
-  alert('Could not find your current location.');
+  alert("Could not find your current location.");
+}
+
+function useCurrentLocation() {
+  // Get current geo location position
+  navigator.geolocation.getCurrentPosition(
+    function (position) {
+      // get long and lat (has to be in this order for MapBox)
+      let currentLoc = [position.coords.longitude, position.coords.latitude];
+
+      map.flyTo({
+        center: currentLoc,
+      });
+    },
+    noCurrentLocation,
+    {
+      enableHighAccuracy: true,
+    }
+  );
 }
