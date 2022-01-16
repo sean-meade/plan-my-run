@@ -34,6 +34,7 @@ geocoder.on("result", (e) => {
 function successCurrentLocation(e) {
   // console.log([e.coords.longitude, e.coords.latitude]);
   map.setCenter([e.coords.longitude, e.coords.latitude]);
+  map.getSource('starting-point').setData(turf.featureCollection([turf.point([e.coords.longitude, e.coords.latitude])]));
 }
 
 // If current location can't be found send alert
