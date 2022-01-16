@@ -16,11 +16,16 @@ function createGeoCoder() {
   return geocoder;
 }
 
-function useCurrentLocation() {
-  // Get current geo location position
-	navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
-		enableHighAccuracy: true,
-	});
+function ceneterMapOnSearch(map) {
+  // Add geocoder result as center of map.
+  geocoder.on("result", (e) => {
+    let chosenLocation = e.result.center;
+    map.flyTo({
+      center: chosenLocation,
+    });
+  });
+}
 
-  
+function noCurrentLocation() {
+  alert('Could not find your current location.');
 }
