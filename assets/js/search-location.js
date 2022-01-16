@@ -17,5 +17,10 @@ function createGeoCoder() {
 }
 
 function useCurrentLocation() {
+  // Get current geo location position
+	navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
+		enableHighAccuracy: true,
+	});
+
   
 }

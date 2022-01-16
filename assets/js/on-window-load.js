@@ -11,18 +11,15 @@ window.onload = function () {
   let geocoder = createGeoCoder(); 
 
   // Create Map
-  let map = checkMapboxSupport()
-  
+  let map = checkMapboxSupport();
+
   // Add geocoder result as center of map.
   geocoder.on("result", (e) => {
     let chosenLocation = e.result.center;
-    const map = new mapboxgl.Map({
-      container: "map",
-      style: "mapbox://styles/mapbox/streets-v11",
-      center: chosenLocation,
-      zoom: 9,
+    map.flyTo({
+      center: chosenLocation
+      });
     });
-  });
   
   
 
