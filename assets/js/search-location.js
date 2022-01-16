@@ -28,7 +28,7 @@ function noCurrentLocation() {
   alert("Could not find your current location.");
 }
 
-function useCurrentLocation() {
+function getCurrentLocation() {
   // Get current geo location position
   navigator.geolocation.getCurrentPosition(
     function (position) {
@@ -38,6 +38,9 @@ function useCurrentLocation() {
       map.flyTo({
         center: currentLoc,
       });
+
+      useCurrentLocation = true;
+      route.push(currentLoc);
     },
     noCurrentLocation,
     {
