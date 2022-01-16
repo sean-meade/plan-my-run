@@ -34,7 +34,6 @@ geocoder.on("result", (e) => {
 function successCurrentLocation(e) {
   // console.log([e.coords.longitude, e.coords.latitude]);
   map.setCenter([e.coords.longitude, e.coords.latitude]);
-  map.getSource('starting-point').setData(turf.featureCollection([turf.point([e.coords.longitude, e.coords.latitude])]));
 }
 
 // If current location can't be found send alert
@@ -53,13 +52,20 @@ function useCurrentLocation(e) {
   );
 }
 
+// a geoJSON feature collection to track clicks to add markers to map
+var clicks = turf.featureCollection([]);
+
 // When map is clicked collect lat and lng
 map.on("click", function (e) {
   var coords = e.lngLat;
   var click = [coords.lng, coords.lat];
-  console.log(click);
-  // add layer to click
-  map.getSource('starting-point').setData(turf.featureCollection([turf.point(click)]));
+  // click to clicks
+  clicks.features.push(click);
+  console.log();
+  if (clicks.features.length == 1) {
+      // add layer to first click
+      map.getSource('starting-point').setData(turf.featureCollection([turf.point(click)]));
+  }
 }); // map on click
 
 // Set first click or current location with starting point symbol
