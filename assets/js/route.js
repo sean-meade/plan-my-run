@@ -23,6 +23,21 @@ let locationChosen = false;
 
 // If location searched update map center
 geocoder.on("result", (e) => {
-  console.log(e.result.center);
   map.setCenter(e.result.center);
 });
+
+function successLocation(e) {
+  // console.log([e.coords.longitude, e.coords.latitude]);
+  map.setCenter([e.coords.longitude, e.coords.latitude]);
+}
+
+function errorLocation(e) {
+  alert("Couldn't find your current location");
+}
+
+function useCurrentLocation(e) {
+  navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
+    enableHighAccuracy: true,
+  });
+  
+}
