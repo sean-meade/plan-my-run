@@ -73,11 +73,12 @@ async function createRoute(route) {
 				method: 'GET',
 				url: url,
 			}).done(function (data) {
-				// Create a GeoJSON feature collection containing the route
+        // Create a GeoJSON feature collection containing the route
 				var routeGeoJSON = turf.featureCollection([
 					turf.feature(data.trips[0].geometry),
 				]);
-        console.log(routeGeoJSON);
+        // show route on map
+				map.getSource('route').setData(routeGeoJSON);
       })
 }
 
@@ -149,7 +150,6 @@ map.on("load", function () {
     var coords = e.lngLat;
     var click = [parseFloat((coords.lng).toFixed(6)), parseFloat((coords.lat).toFixed(6))];
 
-    console.log(click);
     // Add click to route
     clickRoute.push(click);
 
@@ -168,7 +168,6 @@ map.on("load", function () {
         .getSource("starting-point")
         .setData(turf.featureCollection([turf.point(click)]));
     } else {
-      console.log(clicks);
       // add click to route-points layer
       addMarker(clicks);
       // create route of lines
