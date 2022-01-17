@@ -5,6 +5,9 @@ mapboxgl.accessToken =
 // an empty geoJSON feature collection for place holder
 var placeholder = turf.featureCollection([]);
 
+// A list to track clicks (if in click route mode)
+var clickRoute = [];
+
 // Initialize a map with the center being an view of Ireland
 const map = new mapboxgl.Map({
   container: "map",
@@ -57,6 +60,27 @@ function addMarker(clicks) {
   map.getSource("route-points").setData(clicks);
 }
 
+// create a route with given lat long values
+async function createRoute(route) {
+  // create url to make request with
+  var url =
+				'https://api.mapbox.com/optimized-trips/v1/mapbox/driving/' +
+				route.join(';') +
+				'?&overview=full&steps=true&geometries=geojson&source=first&access_token=' +
+				mapboxgl.accessToken;
+
+			$.ajax({
+				method: 'GET',
+				url: url,
+			}).done(function (data) {
+				// Create a GeoJSON feature collection containing the route
+				var routeGeoJSON = turf.featureCollection([
+					turf.feature(data.trips[0].geometry),
+				]);
+        console.log(routeGeoJSON);
+      })
+}
+
 // Set first click or current location with starting point symbol
 // Create layers of start point and route points when map has loaded:
 map.on("load", function () {
@@ -88,24 +112,54 @@ map.on("load", function () {
       type: "geojson",
     },
     layout: {
-      "icon-allow-overlap": true,
+      "icon-allow-overlap": false,
       "icon-ignore-placement": true,
       "icon-image": "marker-15",
     },
   });
 
+  // create a source to add to for the route but
+  // initially set to nothing
+  map.addSource("route", {
+    type: "geojson",
+    data: placeholder,
+  });
+
+  // Add a layer to the map to represent the route
+  // giving 'route' as the source data
+  map.addLayer(
+    {
+      id: "routeline-active",
+      type: "line",
+      source: "route",
+      layout: {
+        "line-join": "round",
+        "line-cap": "round",
+      },
+      paint: {
+        "line-color": "#3887be",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 12, 3, 22, 12],
+      },
+    },
+    "waterway-label"
+  );
+
   // When map is clicked collect lat and lng
   map.on("click", function (e) {
     var coords = e.lngLat;
-    var click = [coords.lng, coords.lat];
+    var click = [parseFloat((coords.lng).toFixed(6)), parseFloat((coords.lat).toFixed(6))];
+
+    console.log(click);
+    // Add click to route
+    clickRoute.push(click);
 
     // set the click as a geoJSON feature
     var pt = turf.point([click[0], click[1]], {
       orderTime: Date.now(),
       key: Math.random(),
     });
-    
-    // click to clicks
+
+    // click addedgirt to clicks
     clicks.features.push(pt);
 
     if (clicks.features.length === 1) {
@@ -117,6 +171,8 @@ map.on("load", function () {
       console.log(clicks);
       // add click to route-points layer
       addMarker(clicks);
+      // create route of lines
+      createRoute(clickRoute);
     }
   }); // map on click
 });
