@@ -83,7 +83,7 @@ async function createRoute(route) {
 				method: 'GET',
 				url: url,
 			}).done(function (data) {
-        console.log(data.routes[0].geometry);
+        console.log(data);
         // Create a GeoJSON feature collection containing the route
 				var route = data.routes[0].geometry.coordinates;
         var routeGeoJSON = {
@@ -96,10 +96,7 @@ async function createRoute(route) {
         // show route on map
 				map.getSource('route').setData(routeGeoJSON);
         // Grab distance of route from data
-				var distanceObject = turf.featureCollection([
-					turf.feature(data.trips[0].distance),
-				]);
-        var distance = distanceObject['features'][0]['geometry'] / 1000;
+        var distance = data.routes[0].distance / 1000;
         // Update distance
         document.getElementById('distance').innerHTML = (distance).toFixed(2) + "km";
       })
