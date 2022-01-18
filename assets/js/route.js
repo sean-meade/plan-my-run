@@ -79,6 +79,13 @@ async function createRoute(route) {
 				]);
         // show route on map
 				map.getSource('route').setData(routeGeoJSON);
+        // Grab distance of route from data
+				var distanceObject = turf.featureCollection([
+					turf.feature(data.trips[0].distance),
+				]);
+        var distance = distanceObject['features'][0]['geometry'] / 1000;
+        // Update distance
+        document.getElementById('distance').innerHTML = (distance).toFixed(2) + "km";
       })
 }
 
