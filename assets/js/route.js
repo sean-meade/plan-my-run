@@ -5,6 +5,9 @@ mapboxgl.accessToken =
 // an empty geoJSON feature collection for place holder
 var placeholder = turf.featureCollection([]);
 
+// a geoJSON feature collection to track clicks to add markers to map
+var clicks = turf.featureCollection([]);
+
 // A list to track clicks (if in click route mode)
 var clickRoute = [];
 
@@ -70,6 +73,8 @@ function loopedRoute() {
   createRoute(clickRoute);
 }
 
+
+
 // create a route with given lat long values
 async function createRoute(route) {
   // create url to make request with
@@ -105,8 +110,7 @@ async function createRoute(route) {
 // Set first click or current location with starting point symbol
 // Create layers of start point and route points when map has loaded:
 map.on("load", function () {
-  // a geoJSON feature collection to track clicks to add markers to map
-  var clicks = turf.featureCollection([]);
+  
 
   map.addLayer({
     id: "starting-point",
@@ -165,6 +169,8 @@ map.on("load", function () {
     "waterway-label"
   );
 
+  
+
   // When map is clicked collect lat and lng
   map.on("click", function (e) {
     var coords = e.lngLat;
@@ -179,7 +185,7 @@ map.on("load", function () {
       key: Math.random(),
     });
 
-    // click addedgirt to clicks
+    // click added to clicks
     clicks.features.push(pt);
 
     if (clicks.features.length === 1) {
@@ -194,4 +200,15 @@ map.on("load", function () {
       createRoute(clickRoute);
     }
   }); // map on click
+  
 });
+
+function undoClick() {
+  clickRoute.pop();
+  createRoute(clickRoute);
+  // click added to clicks
+  console.log(clicks);
+  clicks.features.pop();
+  addMarker(clicks);
+  console.log(clicks);
+}
