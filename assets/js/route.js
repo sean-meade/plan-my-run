@@ -19,7 +19,7 @@ const map = new mapboxgl.Map({
 // Create search field for location
 const geocoder = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
-  types: "country,region,place,postcode,locality,neighborhood",
+  types: "country,region,place,postcode,locality,neighborhood,address,poi",
 });
 
 // Add geocoder to div
@@ -60,23 +60,39 @@ function addMarker(clicks) {
   map.getSource("route-points").setData(clicks);
 }
 
+function loopedRoute() {
+  if (clickRoute[0] == clickRoute[clickRoute.length-1]) {
+    clickRoute.pop();
+  } else {
+    clickRoute.push(clickRoute[0]);
+  }
+
+  createRoute(clickRoute);
+}
+
 // create a route with given lat long values
 async function createRoute(route) {
   // create url to make request with
   var url =
-				'https://api.mapbox.com/optimized-trips/v1/mapbox/driving/' +
+				'https://api.mapbox.com/directions/v5/mapbox/walking/' +
 				route.join(';') +
-				'?&overview=full&steps=true&geometries=geojson&source=first&access_token=' +
+				'?geometries=geojson&access_token=' +
 				mapboxgl.accessToken;
 
 			$.ajax({
 				method: 'GET',
 				url: url,
 			}).done(function (data) {
+        console.log(data.routes[0].geometry);
         // Create a GeoJSON feature collection containing the route
-				var routeGeoJSON = turf.featureCollection([
-					turf.feature(data.trips[0].geometry),
-				]);
+				var route = data.routes[0].geometry.coordinates;
+        var routeGeoJSON = {
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'LineString',
+            coordinates: route
+          }};
         // show route on map
 				map.getSource('route').setData(routeGeoJSON);
         // Grab distance of route from data

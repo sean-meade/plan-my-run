@@ -97,6 +97,11 @@ header a {
   height: 435px;
 }
 
+#route-settings {
+  display: flex;
+  flex-direction: row;
+}
+
 #map {
   width: 95%;
   height: 100%;
