@@ -3,13 +3,13 @@ mapboxgl.accessToken =
   "pk.eyJ1Ijoic2Vhbi1tZWFkZSIsImEiOiJja3lmeDZkM3Iwc21hMm9xcG95YnFqaHh3In0.p4oU6PP7a92U1JYLBCLG2g";
 
 // an empty geoJSON feature collection for place holder
-var placeholder = turf.featureCollection([]);
+let placeholder = turf.featureCollection([]);
 
 // a geoJSON feature collection to track clicks to add markers to map
-var clicks = turf.featureCollection([]);
+let clicks = turf.featureCollection([]);
 
 // A list to track clicks (if in click route mode)
-var clickRoute = [];
+let clickRoute = [];
 
 // Initialize a map with the center being an view of Ireland
 const map = new mapboxgl.Map({
@@ -207,8 +207,6 @@ function undoClick() {
   clickRoute.pop();
   createRoute(clickRoute);
   // click added to clicks
-  console.log(clicks);
   clicks.features.pop();
   addMarker(clicks);
-  console.log(clicks);
 }
