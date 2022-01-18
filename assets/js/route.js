@@ -78,7 +78,7 @@ function loopedRoute() {
 // create a route with given lat long values
 async function createRoute(route) {
   // create url to make request with
-  var url =
+  let url =
 				'https://api.mapbox.com/directions/v5/mapbox/walking/' +
 				route.join(';') +
 				'?geometries=geojson&access_token=' +
@@ -90,8 +90,8 @@ async function createRoute(route) {
 			}).done(function (data) {
         console.log(data);
         // Create a GeoJSON feature collection containing the route
-				var route = data.routes[0].geometry.coordinates;
-        var routeGeoJSON = {
+				let route = data.routes[0].geometry.coordinates;
+        let routeGeoJSON = {
           type: 'Feature',
           properties: {},
           geometry: {
@@ -101,7 +101,7 @@ async function createRoute(route) {
         // show route on map
 				map.getSource('route').setData(routeGeoJSON);
         // Grab distance of route from data
-        var distance = data.routes[0].distance / 1000;
+        let distance = data.routes[0].distance / 1000;
         // Update distance
         document.getElementById('distance').innerHTML = (distance).toFixed(2) + "km";
       })
@@ -173,14 +173,14 @@ map.on("load", function () {
 
   // When map is clicked collect lat and lng
   map.on("click", function (e) {
-    var coords = e.lngLat;
-    var click = [parseFloat((coords.lng).toFixed(6)), parseFloat((coords.lat).toFixed(6))];
+    let coords = e.lngLat;
+    let click = [parseFloat((coords.lng).toFixed(6)), parseFloat((coords.lat).toFixed(6))];
 
     // Add click to route
     clickRoute.push(click);
 
     // set the click as a geoJSON feature
-    var pt = turf.point([click[0], click[1]], {
+    let pt = turf.point([click[0], click[1]], {
       orderTime: Date.now(),
       key: Math.random(),
     });
