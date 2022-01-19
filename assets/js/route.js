@@ -109,7 +109,6 @@ async function createRoute(route) {
 // Create layers of start point and route points when map has loaded:
 map.on("load", function () {
   
-
   map.addLayer({
     id: "starting-point",
     type: "circle",
@@ -171,6 +170,10 @@ map.on("load", function () {
 
   // When map is clicked collect lat and lng
   map.on("click", function (e) {
+
+    // enable button on map click
+    document.getElementById("undo").disabled = false;
+
     let coords = e.lngLat;
     let click = [parseFloat((coords.lng).toFixed(6)), parseFloat((coords.lat).toFixed(6))];
 
@@ -202,9 +205,15 @@ map.on("load", function () {
 });
 
 function undoClick() {
-  if (clickRoute.length > 2) {
-    clickRoute.pop();
-    createRoute(clickRoute);
+  if (clickRoute.length > 1) {
+    if (clickRoute.length == 2) {
+      clickRoute.pop();
+      // show route on map
+     map.getSource('route').setData(clicks);
+    } else {
+      clickRoute.pop();
+      createRoute(clickRoute);
+    }
     // click added to clicks
     clicks.features.pop();
     addMarker(clicks);
@@ -213,8 +222,10 @@ function undoClick() {
     // click added to clicks
     clicks = turf.featureCollection([]);
     addMarker(clicks);
-    // show route on map
-    map.getSource('route').setData(clicks);
+    
+    map.getSource('starting-point').setData(placeholder);
+    // disable undo button
+    document.getElementById("undo").disabled = true;
   }
   
 }
