@@ -209,7 +209,8 @@ function undoClick() {
     if (clickRoute.length == 2) {
       clickRoute.pop();
       // show route on map
-     map.getSource('route').setData(clicks);
+      map.getSource('route').setData(clicks);
+      document.getElementById("distance").innerHTML = "";
     } else {
       clickRoute.pop();
       createRoute(clickRoute);
@@ -222,7 +223,7 @@ function undoClick() {
     // click added to clicks
     clicks = turf.featureCollection([]);
     addMarker(clicks);
-    
+    document.getElementById("distance").innerHTML = "";
     map.getSource('starting-point').setData(placeholder);
     // disable undo button
     document.getElementById("undo").disabled = true;
