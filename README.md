@@ -1,16 +1,14 @@
 # Plan My Run
 
-[NAME](link-to-website) is a website which allows charities to request gifts for the children during the holiday season as well as for the donators to support the charities by choosing the gift they would like to donate.  
+[Plan My Run](https://sean-meade.github.io/plan-my-run/) is a website which allows runners to plan a run. It gives them the ability to choose a location, time, day, and then to map out their route with mouse clicks. The running will recieve back weather information for the time and day, and a distance update on each click of the route they are planning.  
 
 ![Site display on different screens](am-i-responsive-image)
-
-Live Website: https://sean-meade.github.io/plan-my-run/
 
 ---
 
 ## Contents
 
-- [NAME](#gift-of-giving)
+- [Plan My Run](#plan-my-run)
   - [Contents](#contents)
   - [UX](#ux)
     - [Project Goals](#project-goals)
@@ -51,22 +49,33 @@ Live Website: https://sean-meade.github.io/plan-my-run/
 
 ### Project Goals
 
-The main goal of this project is to 
+The main goal of this project is to provide an app that helps runners plan their run. I am achieving this by providing a way for runners to map out potential routes which provides a feedback on distance. Also by adding the ability to get weather information for location, day and time.
 
 ### Site Owner Goals
 
-- Provide the users with a 
+- Provide the users with a helpful web application.
+- Take the hassle out of finding a running route with the right distance.
+- Provide weather information to inform gear choice.
 
 ### Site Visitor/User Goals
 
-- View the
-- Ability to 
+- Ability to choose what location to start the run in.
+- Ability to choose the day and time for a run and with the location recieve weather information.
+- Ability to use the mouse to map out a running route and recieve the distance of the route in return.
 
 ### User Stories
 
 **Applies to all site users:**
 
-- As a user, I am able to 
+- As a user, I am able to quickly understand how to navigate the site.
+- As a user, I am able to choose what location to start the run in.
+- As a user, I am able to change the location when I want.
+- As a user, I am able to choose the day and time for a run and with location recieve weather information
+- As a user, I am able to change the day and time and update the weather information.
+- As a user, I am able to use the mouse to map out a running route and recieve the distance of the route in return.
+- As a user, I am able to undo points of my route and the distance and map updates accordingly.
+- As a user, I am able to make my run a looped run (returns back to where I started) and the distance and map updates accordingly.
+
 
 **Applies to new site users:**
 
