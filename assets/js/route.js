@@ -73,8 +73,6 @@ function loopedRoute() {
   createRoute(clickRoute);
 }
 
-
-
 // create a route with given lat long values
 async function createRoute(route) {
   // create url to make request with
@@ -204,9 +202,19 @@ map.on("load", function () {
 });
 
 function undoClick() {
-  clickRoute.pop();
-  createRoute(clickRoute);
-  // click added to clicks
-  clicks.features.pop();
-  addMarker(clicks);
+  if (clickRoute.length > 2) {
+    clickRoute.pop();
+    createRoute(clickRoute);
+    // click added to clicks
+    clicks.features.pop();
+    addMarker(clicks);
+  } else {
+    clickRoute = [];
+    // click added to clicks
+    clicks = turf.featureCollection([]);
+    addMarker(clicks);
+    // show route on map
+    map.getSource('route').setData(clicks);
+  }
+  
 }
