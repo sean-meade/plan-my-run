@@ -114,7 +114,7 @@ The main goal of this project is to provide an app that helps runners plan their
 
 #### **Colours**
 
-![Colour palette](/assests/images/colour-pallette.png)
+![Colour palette](assests/images/colour-pallette.png "Image of the Colour Palette used for this website")
 
 [Back to content](#contents)
 
@@ -126,7 +126,7 @@ Site moc-ups were designed using [figma](figma). The focus was on defining the b
 
 You can view the wireframes created for this project in [site wireframes](/docs) folder.
 
-  **Please note, as we were developing the project, we have identified some weaknesses in the UX and therefore made the required changes. The deployed site looks somewhat different in comparison to the wireframes. These changes will allow the user to have a better experience and allow easier navigation. The design theme of the features is a close match to the overall site to ensure continuation and flow.*
+  **Please note, as I was developing the project, I have identified some weaknesses in the UX and therefore made the required changes. The deployed site looks somewhat different in comparison to the wireframes. These changes will allow the user to have a better experience and allow easier navigation. The design theme of the features is a close match to the overall site to ensure continuation and flow.*
 
 [Back to content](#contents)
 
@@ -153,14 +153,20 @@ You can view the wireframes created for this project in [site wireframes](/docs)
 - [Google fonts](https://fonts.google.com/)
 - [Font-Awesome](https://fontawesome.com/icons?d=gallery)
 
+### APIs
+The weather API was used through [rapidapi.com](https://rapidapi.com/)
+
+- [Weather API](https://www.weatherapi.com/)
+- [Mapbox API](https://docs.mapbox.com/api/overview/)
+
 ### Tools
 
 - [Git](https://git-scm.com/)
 - [GitHub](https://github.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Color editor](https://coolors.co/)
-- [Favicons](https://fontawesome.com/icons?d=gallery)
-- []
+- [Favicons](https://fontawesome.com/)
+- [Pixabay](https://pixabay.com/)
 
 [Back to content](#contents)
 
