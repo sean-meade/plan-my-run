@@ -51,6 +51,7 @@ header a {
   min-height: 28rem;
   width: 100%;
   overflow: hidden;
+  position: relative;
 }
 
 #hero-image {
@@ -58,6 +59,17 @@ header a {
   width: 100%;
   background: url("../images/the-road-is-long.jpg") no-repeat center center;
   background-size: cover;
+}
+
+#cover-text {
+  display: flex;
+  width: 90%;
+  height: fit-content;
+  text-transform: uppercase;
+  position: absolute;
+  left: 5%;
+  top: 40%;
+  text-align: center;
 }
 
 /* Steps heading */
