@@ -119,3 +119,18 @@ header a {
   height: 100%;
   margin: auto;
 }
+
+/* Media Queries */
+@media only screen and (min-width: 520px) {
+  #cover-text {
+    width: 60%;
+    left: 20%;
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  #cover-text {
+    width: 40%;
+    left: 30%;
+  }
+}
