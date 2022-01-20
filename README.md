@@ -2,6 +2,8 @@
 
 [Plan My Run](https://sean-meade.github.io/plan-my-run/) is a website which allows runners to plan a run. It gives them the ability to choose a location, time, day, and then to map out their route with mouse clicks. The running will recieve back weather information for the time and day, and a distance update on each click of the route they are planning.  
 
+The longer the run the more difficult it gets. You have to make sure you plan your route so you run long enough distances to continue to progress. You can run the same shorter distance multiple times to make it up but speaking from experience will drive you crazy. It is important to know how far you must run before going out.
+
 ![Site display on different screens](am-i-responsive-image)
 
 ---
@@ -79,13 +81,9 @@ The main goal of this project is to provide an app that helps runners plan their
 
 **Applies to new site users:**
 
-- As a user, I am able to 
+- As a user, I am able to understand how to use it without instruction.
 
 **Applies to all returning users:**
-
-- As a user, I am able to 
-
-**Applies to a superuser (site owner):**
 
 - As a user, I am able to 
 
@@ -112,15 +110,11 @@ The main goal of this project is to provide an app that helps runners plan their
 
 - *All fonts*
 
-  ```font-family: Baloo Bhaijaan 2', sans-serif;```
-
-- *Special font - logo*
-
-  ```font-family: ''Meow Script', cursive;```
+  ```font-family: "Playfair Display", serif;```
 
 #### **Colours**
 
-![Colour palette](colour-pallette-img)
+![Colour palette](/assests/images/colour-pallette.png)
 
 [Back to content](#contents)
 
@@ -128,9 +122,9 @@ The main goal of this project is to provide an app that helps runners plan their
 
 ### **Site Layout**
 
-Site moc-ups were designed using [figma](figma). The focus was on defining the basic layout structure of the app and identifying how displays would change on different screen sizes such as mobile, tablet and larger screens.
+Site moc-ups were designed using [figma](figma). The focus was on defining the basic layout structure of the app and identifying how the display would change on different screen sizes such as mobile, tablet and larger screens.
 
-You can view the wireframes created for this project in [site wireframes](/docs/wireframes.pdf) folder.
+You can view the wireframes created for this project in [site wireframes](/docs) folder.
 
   **Please note, as we were developing the project, we have identified some weaknesses in the UX and therefore made the required changes. The deployed site looks somewhat different in comparison to the wireframes. These changes will allow the user to have a better experience and allow easier navigation. The design theme of the features is a close match to the overall site to ensure continuation and flow.*
 
@@ -156,7 +150,6 @@ You can view the wireframes created for this project in [site wireframes](/docs/
 ### Libraries & Frameworks
 
 - [jQuery](https://jquery.com/)
-- [Bootstrap](https://getbootstrap.com/)
 - [Google fonts](https://fonts.google.com/)
 - [Font-Awesome](https://fontawesome.com/icons?d=gallery)
 
@@ -167,6 +160,7 @@ You can view the wireframes created for this project in [site wireframes](/docs/
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Color editor](https://coolors.co/)
 - [Favicons](https://fontawesome.com/icons?d=gallery)
+- []
 
 [Back to content](#contents)
 
@@ -174,7 +168,6 @@ You can view the wireframes created for this project in [site wireframes](/docs/
 
 ## Features
 
-The website is designed as a one page application.
 
 ### Implemented Features
 
@@ -211,7 +204,7 @@ This happened
 
 **Actual**
 
-This happened
+This happened 
 
 ![TC001](img-of-test)
 
