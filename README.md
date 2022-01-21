@@ -4,7 +4,7 @@
 
 The longer the run the more difficult it gets. You have to make sure you plan your route so you run long enough distances to continue to progress. You can run the same shorter distance multiple times to make it up but speaking from experience will drive you crazy. It is important to know how far you must run before going out.
 
-![Site display on different screens](am-i-responsive-image)
+![Site display on different screens](assests/images/amiresponsive.png "Image showing website on multiple platforms")
 
 ---
 
