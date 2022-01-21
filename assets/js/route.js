@@ -204,6 +204,19 @@ map.on("load", function () {
   
 });
 
+function resetRoute() {
+  clickRoute = [];
+  
+  // click added to clicks
+  clicks = turf.featureCollection([]);
+  addMarker(clicks);
+  document.getElementById("distance").innerHTML = "";
+  map.getSource('starting-point').setData(placeholder);
+  // disable undo button
+  document.getElementById("undo").disabled = true;
+  map.getSource('route').setData(clicks);
+}
+
 function undoClick() {
   if (clickRoute.length > 1) {
     if (clickRoute.length == 2) {

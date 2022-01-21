@@ -303,7 +303,7 @@ git clone link-to-repo
 
 Site creators:
 
-[Sean Meade](https://github.com/sean-meade) - Primarily Front End
+[Sean Meade](https://github.com/sean-meade)
 
 [Back to content](#contents)
 
