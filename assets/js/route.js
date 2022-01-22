@@ -217,7 +217,7 @@ map.on("click", function (e) {
     }
   } else {
     // throw error saying reached limmit of clicks
-    alert("Reached limit of way points");
+    alert("Reached limit of way points", "warning", "way-point-limit-reached");
   }
 }); // map on click
 
@@ -293,8 +293,6 @@ function useCurrentLocAsStart() {
     }
   );
 }
-
-
 
 function createStartMarker(start) {
   map
