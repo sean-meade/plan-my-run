@@ -82,10 +82,11 @@
     </div>
     <div id="route-settings">
       <label for="looped-route">Looped Route:</label>
-      <input type="checkbox" name="looped-route" onclick="loopedRoute()" id="looped-route">
+      <input type="checkbox" name="looped-route" onclick="loopedRoute()" id="looped-route" disabled>
       <p>Distance of route: <span id="distance"></span></p>
       <input id="undo" type="button" value="Undo" onclick="undoClick()" disabled>
       <input type="button" value="Reset Route" onclick="resetRoute()">
+      <p>Way Points: <span id="way-points"></span>/24</p>
     </div>
   </section>
 

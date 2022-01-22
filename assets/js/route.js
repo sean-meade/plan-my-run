@@ -64,7 +64,8 @@ function addMarker(clicks) {
 }
 
 function loopedRoute() {
-  if (clickRoute[0] == clickRoute[clickRoute.length-1]) {
+  // So add in the checked property where the condition is in the if statement to control more
+  if (clickRoute[0] == clickRoute[clickRoute.length-1] && document.getElementById("looped-route").checked == false) {
     clickRoute.pop();
   } else {
     clickRoute.push(clickRoute[0]);
@@ -171,7 +172,7 @@ map.on("load", function () {
   // When map is clicked collect lat and lng
   map.on("click", function (e) {
 
-    // enable button on map click
+    // enable undo button on map click
     document.getElementById("undo").disabled = false;
 
     let coords = e.lngLat;
@@ -179,6 +180,18 @@ map.on("load", function () {
 
     // Add click to route
     clickRoute.push(click);
+
+    if (clickRoute.length > 1) {
+      document.getElementById("looped-route").disabled = false;
+    }
+
+    // Add to number off clicks
+    if (clickRoute.length < 25) {
+      document.getElementById("way-points").innerHTML = clickRoute.length;
+    } else {
+      // throw error saying reached limmit of clicks
+      alert("Reached limit of way points")
+    }
 
     // set the click as a geoJSON feature
     let pt = turf.point([click[0], click[1]], {
