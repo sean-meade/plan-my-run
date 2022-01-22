@@ -181,6 +181,12 @@ header a {
   }
 }
 
+@media only screen and (max-width: 626px) {
+  #input-lower {
+    margin-top: 1rem;
+  }
+}
+
 @media only screen and (min-width: 700px) {
   #cover-text {
     width: 40%;
