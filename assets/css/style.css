@@ -64,6 +64,10 @@ hr {
   width: 97%;
 }
 
+.bootstrap-alert {
+  width: 90%;
+}
+
 /* Header */
 header {
   width: 100%;

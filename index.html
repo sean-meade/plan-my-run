@@ -55,7 +55,7 @@
     <form action="">
       <div id="geocoder"></div>
       <p>OR</p>
-      <div id="noCurrentLocationAlert"></div>
+      <div id="noCurrentLocationAlert" class="bootstrap-alert"></div>
       <input type="button" value="Use Current Location" onclick="useCurrentLocation()" id="use-current-location">
     </form>
   </section>
@@ -102,7 +102,7 @@
           <input type="button" value="Start where I am" onclick="useCurrentLocAsStart()">
         </div>
       </div>
-      <div id="noCurrentLocationAlertForMap"></div>
+      <div id="noCurrentLocationAlertForMap" class="bootstrap-alert"></div>
       <div class="output">
         <div><b>Distance:</b> <span id="distance">0</span> km</div>
         <div><b>Way Points:</b> <span id="way-points">0</span>/24</div>
@@ -111,7 +111,7 @@
   </section>
 
   <section id="map-section">
-    <div id="way-point-limit-reached"></div>
+    <div id="map-alerts" class="bootstrap-alert"></div>
     <div id="map"></div>
   </section>
   

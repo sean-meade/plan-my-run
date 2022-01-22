@@ -84,7 +84,7 @@ async function createRoute(route) {
   // create url to make request with route and API key
   let url =
     "https://api.mapbox.com/directions/v5/mapbox/walking/" +
-    route.join(";") +
+    route.join("") +
     "?geometries=geojson&access_token=" +
     mapboxgl.accessToken;
 
@@ -110,6 +110,9 @@ async function createRoute(route) {
     let distance = data.routes[0].distance / 1000;
     // Update distance in HTML
     document.getElementById("distance").innerHTML = distance.toFixed(2) + "km";
+  }).fail(function () {
+    // throw error if request fails
+    alert("Request for route information failed please contact creator or site", "danger", "map-alerts");
   });
 }
 
@@ -217,7 +220,7 @@ map.on("click", function (e) {
     }
   } else {
     // throw error saying reached limmit of clicks
-    alert("Reached limit of way points", "warning", "way-point-limit-reached");
+    alert("Reached limit of way points", "warning", "map-alerts");
   }
 }); // map on click
 
