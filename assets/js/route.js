@@ -279,6 +279,7 @@ function undoClick() {
 }
 
 function useCurrentLocAsStart() {
+  resetRoute();
   navigator.geolocation.getCurrentPosition(
     setStartMarker,
     errorCurrentLocation,
