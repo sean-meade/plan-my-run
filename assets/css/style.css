@@ -61,7 +61,7 @@ h6,
 
 hr {
   margin-top: 1rem;
-  width: 90%;
+  width: 97%;
 }
 
 /* Header */
@@ -161,7 +161,7 @@ input {
 }
 
 .input input[type='checkbox'] {
-  margin: 0.4rem 1rem 0 0.2rem;
+  margin: 0 0 0 0.1rem;
 }
 
 .output {
@@ -224,9 +224,19 @@ footer a {
   }
 }
 
-@media only screen and (max-width: 626px) {
+@media only screen and (max-width: 605px) {
   #input-lower {
     margin-top: 1rem;
+  }
+}
+
+@media only screen and (min-width: 660px) {
+  .output {
+    justify-content: center;
+  }
+
+  .output div {
+    margin: 0 1.5rem;
   }
 }
 
