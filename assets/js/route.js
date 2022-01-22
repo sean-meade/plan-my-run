@@ -44,6 +44,17 @@ function errorCurrentLocation(e) {
   alert("Couldn't find your current location");
 }
 
+// Function called when button is pressed for using current location
+function useCurrentLocation(e) {
+  navigator.geolocation.getCurrentPosition(
+    successCurrentLocation,
+    errorCurrentLocation,
+    {
+      enableHighAccuracy: true,
+    }
+  );
+}
+
 // function that updates the route-points layer to add maker to map
 function addMarker(clicks) {
   map.getSource("route-points").setData(clicks);
@@ -180,10 +191,11 @@ map.on("click", function (e) {
 
   // if the limit of 24 clicks hasn't been met
   if (clickRoute.length < 24) {
-    // Add click to route
-    clickRoute.push(click);
-    // update number of clicks in html
-    document.getElementById("way-points").innerHTML = clickRoute.length;
+    // // Add click to route
+    // clickRoute.push(click);
+    // // update number of clicks in html
+    // document.getElementById("way-points").innerHTML = clickRoute.length;
+    updateRoute(click);
 
     // set the click as a geoJSON feature to add to clicks
     let pt = turf.point([click[0], click[1]], {
@@ -208,6 +220,15 @@ map.on("click", function (e) {
     alert("Reached limit of way points");
   }
 }); // map on click
+
+function updateRoute(click) {
+  // Add click to route
+  clickRoute.push(click);
+  // update number of clicks in html
+  document.getElementById("way-points").innerHTML = clickRoute.length;
+
+  
+}
 
 // Function called by button click to clear everything and clicking route again
 function resetRoute() {
@@ -256,4 +277,35 @@ function undoClick() {
     resetRoute();
   }
 }
+
+function useCurrentLocAsStart() {
+  navigator.geolocation.getCurrentPosition(
+    setStartMarker,
+    errorCurrentLocation,
+    {
+      enableHighAccuracy: true,
+    }
+  );
+  
+}
+
+function setStartMarker(click) {
+  if (click.coords == undefined) {
+    map
+    .getSource("starting-point")
+    .setData(turf.featureCollection([turf.point(click)]));
+  } else {
+    let start = [
+      parseFloat(click.coords.longitude.toFixed(6)),
+      parseFloat(click.coords.latitude.toFixed(6)),
+    ];
+    updateRoute(start);
+    map
+    setStartMarker(start);
+    map
+    .setCenter(start);
+  }
+  
+}
+
 
