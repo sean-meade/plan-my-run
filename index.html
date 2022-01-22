@@ -24,11 +24,6 @@
   
 </head>
 <body>
-
-  <!-- Divs for loading screen -->
-  <div class="bg"></div>
-  <div class="loading-text">0%</div>
-
   <!-- Header Section -->
   <header>
     <h1>
@@ -86,16 +81,20 @@
       <h2>Plan Your Route:</h2>
     </div>
     <div id="route-settings">
-      <div class="output">
-        <p><b>Distance</b>: <span id="distance">0</span>km</p>
-        <p><b>Way Points</b>: <span id="way-points">0</span>/24</p>
+      <div class="input">
+        <div>
+          <label for="looped-route">Looped Route:</label>
+          <input type="checkbox" name="looped-route" onclick="loopedRoute()" id="looped-route" disabled>
+          <input id="undo" type="button" value="Undo" onclick="undoClick()" disabled>
+        </div>
+        <div>
+          <input type="button" value="Reset Route" onclick="resetRoute()">
+          <input type="button" value="Start where I am" onclick="useCurrentLocAsStart()">
+        </div>
       </div>
       <div class="output">
-        <label for="looped-route">Looped Route:</label>
-        <input type="checkbox" name="looped-route" onclick="loopedRoute()" id="looped-route" disabled>
-        <input id="undo" type="button" value="Undo" onclick="undoClick()" disabled>
-        <input type="button" value="Reset Route" onclick="resetRoute()">
-        <input type="button" value="Start where I am" onclick="useCurrentLocAsStart()">
+        <div><b>Distance:</b> <span id="distance">0</span> km</div>
+        <div><b>Way Points:</b> <span id="way-points">0</span>/24</div>
       </div>
     </div>
   </section>
@@ -109,8 +108,9 @@
     <p><a href="https://github.com/sean-meade">&copy; The Nerd Outdoorsman</a></p>
   </footer>
 
-  
-  
+  <!-- Divs for loading screen -->
+  <div class="bg"></div>
+  <div class="loading-text">0%</div>
 
   <script src="assets/js/loading-screen.js"></script>
   <script src="assets/js/main.js"></script>
