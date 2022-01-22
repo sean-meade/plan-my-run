@@ -178,41 +178,42 @@ map.on("load", function () {
     let coords = e.lngLat;
     let click = [parseFloat((coords.lng).toFixed(6)), parseFloat((coords.lat).toFixed(6))];
 
-    // Add click to route
-    clickRoute.push(click);
-
     if (clickRoute.length > 1) {
       document.getElementById("looped-route").disabled = false;
     }
 
     // Add to number off clicks
-    if (clickRoute.length < 25) {
+    if (clickRoute.length < 24) {
+      // Add click to route
+      clickRoute.push(click);
       document.getElementById("way-points").innerHTML = clickRoute.length;
+
+      // set the click as a geoJSON feature
+      let pt = turf.point([click[0], click[1]], {
+        orderTime: Date.now(),
+        key: Math.random(),
+      });
+
+      // click added to clicks
+      clicks.features.push(pt);
+
+      if (clicks.features.length === 1) {
+        // add layer to first click
+        map
+          .getSource("starting-point")
+          .setData(turf.featureCollection([turf.point(click)]));
+      } else {
+        // add click to route-points layer
+        addMarker(clicks);
+        // create route of lines
+        createRoute(clickRoute);
+      }
     } else {
       // throw error saying reached limmit of clicks
       alert("Reached limit of way points")
     }
 
-    // set the click as a geoJSON feature
-    let pt = turf.point([click[0], click[1]], {
-      orderTime: Date.now(),
-      key: Math.random(),
-    });
-
-    // click added to clicks
-    clicks.features.push(pt);
-
-    if (clicks.features.length === 1) {
-      // add layer to first click
-      map
-        .getSource("starting-point")
-        .setData(turf.featureCollection([turf.point(click)]));
-    } else {
-      // add click to route-points layer
-      addMarker(clicks);
-      // create route of lines
-      createRoute(clickRoute);
-    }
+    
   }); // map on click
   
 });
