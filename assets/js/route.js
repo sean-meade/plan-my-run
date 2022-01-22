@@ -191,8 +191,6 @@ map.on("click", function (e) {
       key: Math.random(),
     });
 
-    
-
     // if it's the first click
     if (clickRoute.length === 1) {
       // add layer to first click
@@ -211,62 +209,51 @@ map.on("click", function (e) {
   }
 }); // map on click
 
+// Function called by button click to clear everything and clicking route again
 function resetRoute() {
-  clickRoute = [];
 
-  // click added to clicks
+  // Empty clickRoute and clicks
+  clickRoute = [];
   clicks = turf.featureCollection([]);
-  addMarker(clicks);
+  
+  // Empty distance output
   document.getElementById("distance").innerHTML = "";
+  // empyty layer for starting point marker with placeholder
   map.getSource("starting-point").setData(placeholder);
+  // empyty layer for route with empty clicks
+  map.getSource("route").setData(clicks);
+  // empyty layer for markers with clicks
+  addMarker(clicks);
   // disable undo button
   document.getElementById("undo").disabled = true;
-  map.getSource("route").setData(clicks);
 }
 
+// Function called by button click to remove click from route and update map
 function undoClick() {
+  // if more the starting point in clickRoute
   if (clickRoute.length > 1) {
-    
+    // if there is 2 markers
     if (clickRoute.length == 2) {
+      // remove marker
       clickRoute.pop();
-      // show route on map
+      // update route on map and distance dispalyed on html
       map.getSource("route").setData(clicks);
       document.getElementById("distance").innerHTML = "";
     } else {
+      // otherwise remove marker and update route
       clickRoute.pop();
       createRoute(clickRoute);
     }
-    // click added to clicks
+    // remove last click from clicks
     clicks.features.pop();
+    // update markers on map
     addMarker(clicks);
 
     // update number of clicks displayed in html
     document.getElementById("way-points").innerHTML = clickRoute.length;
   } else {
-    clickRoute = [];
-    // click added to clicks
-    clicks = turf.featureCollection([]);
-    addMarker(clicks);
-    document.getElementById("distance").innerHTML = "";
-    map.getSource("starting-point").setData(placeholder);
-    // disable undo button
-    document.getElementById("undo").disabled = true;
+
+    resetRoute();
   }
 }
 
-function setStartMarker(click) {
-  map
-    .getSource("starting-point")
-    .setData(turf.featureCollection([turf.point(click)]));
-}
-
-function useCurrentLocAsStart() {
-  resetRoute();
-  navigator.geolocation.getCurrentPosition(
-    setStartMarker(),
-    errorCurrentLocation,
-    {
-      enableHighAccuracy: true,
-    }
-  );
-}
