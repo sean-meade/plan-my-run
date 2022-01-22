@@ -140,6 +140,11 @@ header a {
   padding: 0.3rem;
 }
 
+/* Weather Section */
+.weather-input {
+  width: 3rem;
+}
+
 /* Map Section */
 
 #route-section {
