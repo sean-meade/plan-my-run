@@ -12,7 +12,8 @@ function blurring() {
     clearInterval(int);
   }
 
-  console.log(load);
+  console.log((1 - load/100).toFixed(2));
 
   loadText.innerText = `${load}%`;
+  loadText.style.opacity = (1 - load/100);
 }
