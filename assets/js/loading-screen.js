@@ -13,4 +13,6 @@ function blurring() {
   }
 
   console.log(load);
+
+  loadText.innerText = `${load}%`;
 }
