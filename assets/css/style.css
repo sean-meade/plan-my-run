@@ -127,6 +127,10 @@ header a {
   min-width: 100%;
 }
 
+#use-current-location {
+  margin-top: 1rem;
+}
+
 /* Map Section */
 
 #route-section {
@@ -146,7 +150,7 @@ header a {
   flex-wrap: wrap;
 }
 
-.input input {
+input {
   padding: 0.3rem 0.3rem;
   margin: 0 1rem;
 }
@@ -158,7 +162,7 @@ header a {
 .output {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin: 1.5rem 0;
 }
 
@@ -174,6 +178,22 @@ header a {
 }
 
 /* Media Queries */
+@media only screen and (max-width: 352px) {
+  #route-section {
+    width: 90%;
+  }
+
+  #input-lower {
+    display: flex;
+    justify-content: center;
+  }
+
+  .output {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 @media only screen and (min-width: 520px) {
   #cover-text {
     width: 60%;
