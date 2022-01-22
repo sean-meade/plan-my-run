@@ -133,9 +133,20 @@ header a {
   height: 435px;
 }
 
+#route-section {
+  width: 80%;
+}
+
 #route-settings {
   display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.output {
+  display: flex;
   flex-direction: row;
+  justify-content: space-around;
 }
 
 #map {

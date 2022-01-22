@@ -80,19 +80,23 @@
   </section>
 
   <!-- Plan Route -->
-  <section>
+  <section id="route-section">
     <div class="step-header">
       <div class="circle">2</div>
       <h2>Plan Your Route:</h2>
     </div>
     <div id="route-settings">
-      <label for="looped-route">Looped Route:</label>
-      <input type="checkbox" name="looped-route" onclick="loopedRoute()" id="looped-route" disabled>
-      <p>Distance of route: <span id="distance"></span></p>
-      <input id="undo" type="button" value="Undo" onclick="undoClick()" disabled>
-      <input type="button" value="Reset Route" onclick="resetRoute()">
-      <p>Way Points: <span id="way-points">0</span>/24</p>
-      <input type="button" value="Start where I am" onclick="useCurrentLocAsStart()">
+      <div class="output">
+        <p><b>Distance</b>: <span id="distance">0</span>km</p>
+        <p><b>Way Points</b>: <span id="way-points">0</span>/24</p>
+      </div>
+      <div class="output">
+        <label for="looped-route">Looped Route:</label>
+        <input type="checkbox" name="looped-route" onclick="loopedRoute()" id="looped-route" disabled>
+        <input id="undo" type="button" value="Undo" onclick="undoClick()" disabled>
+        <input type="button" value="Reset Route" onclick="resetRoute()">
+        <input type="button" value="Start where I am" onclick="useCurrentLocAsStart()">
+      </div>
     </div>
   </section>
 
