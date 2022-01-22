@@ -42,7 +42,6 @@ function successCurrentLocation(e) {
 // If current location can't be found send alert
 function errorCurrentLocation(e) {
   alert("Couldn't find your current location", "warning", "noCurrentLocationAlert");
-  
 }
 
 // Function called when button is pressed for using current location
@@ -279,17 +278,23 @@ function undoClick() {
   }
 }
 
+// If current location can't be found send alert
+function errorCurrentLocation2(e) {
+  alert("Couldn't find your current location", "warning", "noCurrentLocationAlertForMap");
+}
+
 function useCurrentLocAsStart() {
   resetRoute();
   navigator.geolocation.getCurrentPosition(
     setStartMarker,
-    errorCurrentLocation,
+    errorCurrentLocation2,
     {
       enableHighAccuracy: true,
     }
   );
-  
 }
+
+
 
 function createStartMarker(start) {
   map
