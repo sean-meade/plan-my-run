@@ -59,6 +59,11 @@ h6,
   font-family: "Oswald", serif;
 }
 
+hr {
+  margin-top: 1rem;
+  width: 90%;
+}
+
 /* Header */
 header {
   width: 100%;
