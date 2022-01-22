@@ -134,6 +134,7 @@ header a {
 
 #use-current-location {
   margin-top: 1rem;
+  padding: 0.3rem;
 }
 
 /* Map Section */
@@ -155,8 +156,8 @@ header a {
   flex-wrap: wrap;
 }
 
-input {
-  padding: 0.3rem 0.3rem;
+.input input {
+  padding: 0.3rem;
   margin: 0 1rem;
 }
 
