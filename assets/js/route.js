@@ -290,19 +290,22 @@ function useCurrentLocAsStart() {
   
 }
 
+function createStartMarker(start) {
+  map
+    .getSource("starting-point")
+    .setData(turf.featureCollection([turf.point(start)]));
+}
+
 function setStartMarker(click) {
   if (click.coords == undefined) {
-    map
-    .getSource("starting-point")
-    .setData(turf.featureCollection([turf.point(click)]));
+    createStartMarker(click);
   } else {
     let start = [
       parseFloat(click.coords.longitude.toFixed(6)),
       parseFloat(click.coords.latitude.toFixed(6)),
     ];
     updateRoute(start);
-    map
-    setStartMarker(start);
+    createStartMarker(start);
     map
     .setCenter(start);
   }
