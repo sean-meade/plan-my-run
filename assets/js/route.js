@@ -226,8 +226,6 @@ function updateRoute(click) {
   clickRoute.push(click);
   // update number of clicks in html
   document.getElementById("way-points").innerHTML = clickRoute.length;
-
-  
 }
 
 // Function called by button click to clear everything and clicking route again
@@ -247,6 +245,8 @@ function resetRoute() {
   addMarker(clicks);
   // disable undo button
   document.getElementById("undo").disabled = true;
+  // update number of clicks left
+  document.getElementById("way-points").innerHTML = "0";
 }
 
 // Function called by button click to remove click from route and update map
