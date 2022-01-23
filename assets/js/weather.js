@@ -45,8 +45,8 @@ document.getElementById('get-weather').onclick = function (){
     // function to fill div after getting all the relevant information
     document.getElementById('weather-output').innerHTML = `
     <img src="http://openweathermap.org/img/w/${relWeatherData.weather[0].icon}.png" alt="" srcset=""> 
-    <p>Temp min${relWeatherData.main.temp_min}</p>
-    <p>Temp max${relWeatherData.main.temp_max}</p>
+    <p>Temp min ${relWeatherData.main.temp_min}</p>
+    <p>Temp max ${relWeatherData.main.temp_max}</p>
     <p>Temp${relWeatherData.main.temp}</p>
     <p>Chance of rain${relWeatherData.pop}</p>
     <p>Wind Speed and direction (units?): ${relWeatherData.wind.speed}km/h ${relWeatherData.wind.deg} deg</p>`;
