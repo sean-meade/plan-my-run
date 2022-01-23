@@ -35,6 +35,7 @@ geocoder.on("result", (e) => {
 
 // set center of map to current location if success
 function successCurrentLocation(e) {
+  console.log(e.coords.latitude, e.coords.longitude);
   // console.log([e.coords.longitude, e.coords.latitude]);
   map.setCenter([e.coords.longitude, e.coords.latitude]);
 }

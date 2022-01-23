@@ -1,25 +1,14 @@
-let weatherAPIKey = "4b75a5379ac94accbd0233223222201";
-let latLong = "53.75014,-7.266155";
-// day 3 is two days away (includes today)
-let day = 3;
-let hour = 17;
+let weatherAPIkEY = "5fc8e9bc79a5a2e82d9c4120d41402cd";
+let lat = 53.75014;
+let lon = -7.266155;
 
 $.ajax({
   method: "GET",
-  url: `https://api.weatherapi.com/v1/forecast.json?key=${weatherAPIKey}&q=${latLong}&days=${day}&aqi=no&alerts=no&hour=${hour}`,
+  url: `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${weatherAPIkEY}`,
 }).done(function (data) {
-  let dayNo = data.forecast.forecastday.length - 1;
-  console.log(data.forecast.forecastday[dayNo].day.condition);
-  // Image from request 
-  imageSrc = data.forecast.forecastday[dayNo].day.condition.icon;
-  imageAlt = data.forecast.forecastday[dayNo].day.condition.text;
-  document.getElementById('weather-output').innerHTML = `<img src="${imageSrc}" alt="${imageAlt}">`
+  console.log(data);
 }).fail(function () {
   // throw error if request fails
-  alert("error for weather api");
+  alert("weather failed");
 });
 
-
-
-
-// "https://api.weatherapi.com/v1/forecast.json?key=4b75a5379ac94accbd0233223222201&q=53.75014,-7.266155&days=1&aqi=no&alerts=no"
