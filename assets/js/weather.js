@@ -12,6 +12,8 @@
 //   alert("weather failed");
 // });
 
+
+
 // variables to act as input
 let hour = 00;
 let day = 25;
@@ -32,6 +34,19 @@ function getDayHourMonth(i) {
 
 // console.log(weatherData.list);
 
+
+document.getElementById('get-weather').onclick = function (){
+
+  if (clickRoute[0]) {
+    let val = [clickRoute[0][1], clickRoute[0][0]];
+  document.getElementById('weather-output').innerHTML = val;
+  } else {
+    alert("No Starting point selected", "warning", "weather-output")
+  }
+  
+}
+
+
 /**
  * Loops through the weather data and find the relevent element based on input hour, day, and month
  */
@@ -47,11 +62,11 @@ for (let i = 0; i < 39; i++) {
     }
     // if the hour is the same as in the data
     if (hour == houri) {
-      console.log(weatherData.list[i], 1);
+      // console.log(weatherData.list[i], 1);
       break;
     } else if (hour < hourip1 && hour >= houri) {
       // else if the hour is within a range
-      console.log(weatherData.list[i], 2);
+      // console.log(weatherData.list[i], 2);
     }
   }
 }

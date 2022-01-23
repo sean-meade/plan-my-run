@@ -62,33 +62,10 @@
 
   <hr>
 
-  <!-- Weather input -->
-  <section>
-    <div class="step-header">
-      <div class="circle">2</div>
-      <h2>What Day & Time?</h2>
-    </div>
-    <form action="">
-      <p>
-        On
-        <select name="day" id="weather-input">
-          <option value="">Monday</option>
-        </select>
-        at
-        <select name="time" id="weather-input">
-          <option value="">00:00</option>
-        </select>
-      </p>
-    </form>
-    <div id="weather-output"></div>
-  </section>
-
-  <hr>
-
   <!-- Plan Route -->
   <section id="route-section">
     <div class="step-header">
-      <div class="circle">3</div>
+      <div class="circle">2</div>
       <h2>Plan Your Route:</h2>
     </div>
     <div id="route-settings">
@@ -115,6 +92,30 @@
     <div id="map-alerts" class="bootstrap-alert"></div>
     <div id="map"></div>
   </section>
+
+  <hr>
+
+  <!-- Weather input -->
+  <section>
+    <div class="step-header">
+      <div class="circle">3</div>
+      <h2>What Day & Time?</h2>
+    </div>
+    <form action="">
+      <p>
+        On
+        <select name="day" id="weather-input">
+          <option value="">Monday</option>
+        </select>
+        at
+        <select name="time" id="weather-input">
+          <option value="">00:00</option>
+        </select>
+      </p>
+      <button type="button" id="get-weather">Get Weather</button>
+    </form>
+    <div id="weather-output"></div>
+  </section>
   
   <!-- Footer -->
   <footer>
@@ -126,9 +127,10 @@
   <div class="loading-text">0%</div>
 
   <script src="assets/js/data.js"></script>
+  <script src="assets/js/weather.js"></script>
   <script src="assets/js/loading-screen.js"></script>
   <script src="assets/js/live-alert.js"></script>
-  <script src="assets/js/weather.js"></script>
   <script src="assets/js/route.js"></script>
+  
 </body>
 </html>

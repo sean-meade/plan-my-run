@@ -38,6 +38,8 @@ function successCurrentLocation(e) {
   console.log(e.coords.latitude, e.coords.longitude);
   // console.log([e.coords.longitude, e.coords.latitude]);
   map.setCenter([e.coords.longitude, e.coords.latitude]);
+  
+  return [e.coords.latitude, e.coords.longitude];
 }
 
 // If current location can't be found send alert
@@ -85,7 +87,7 @@ async function createRoute(route) {
   // create url to make request with route and API key
   let url =
     "https://api.mapbox.com/directions/v5/mapbox/walking/" +
-    route.join("") +
+    route.join(";") +
     "?geometries=geojson&access_token=" +
     mapboxgl.accessToken;
 
