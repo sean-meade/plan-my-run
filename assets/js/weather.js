@@ -16,7 +16,7 @@
 
 // variables to act as input
 let hour = 00;
-let day = 25;
+let day = 26;
 let month = 01;
 
 /**
@@ -34,6 +34,7 @@ function getDayHourMonth(weatherData, i) {
 
 // console.log(weatherData.list);
 
+// For icon solution: https://stackoverflow.com/questions/44177417/how-to-display-openweathermap-weather-icon
 
 document.getElementById('get-weather').onclick = function (){
 
@@ -42,7 +43,13 @@ document.getElementById('get-weather').onclick = function (){
     // make request for allWeatherData with latLon and day
     let relWeatherData = getRelevantWeatherData(weatherData)
     // function to fill div after getting all the relevant information
-    document.getElementById('weather-output').innerHTML = relWeatherData.main.temp;
+    document.getElementById('weather-output').innerHTML = `
+    <img src="http://openweathermap.org/img/w/${relWeatherData.weather[0].icon}.png" alt="" srcset=""> 
+    <p>Temp min${relWeatherData.main.temp_min}</p>
+    <p>Temp max${relWeatherData.main.temp_max}</p>
+    <p>Temp${relWeatherData.main.temp}</p>
+    <p>Chance of rain${relWeatherData.pop}</p>
+    <p>Wind Speed and direction (units?): ${relWeatherData.wind.speed}km/h ${relWeatherData.wind.deg} deg</p>`;
     console.log(relWeatherData);
   } else {
     alert("No Starting point selected", "warning", "weather-output")
