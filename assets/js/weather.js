@@ -12,8 +12,6 @@
 //   alert("weather failed");
 // });
 
-
-
 // variables to act as input
 let hour = 00;
 let day = 26;
@@ -21,8 +19,8 @@ let month = 01;
 
 /**
  * Returns an array with day, hour, and, month (as ints) of the ith element in weather array
- * 
- * @param {number} i 
+ *
+ * @param {number} i
  * @returns {array} containing day, hour, and, month
  */
 function getDayHourMonth(weatherData, i) {
@@ -36,27 +34,39 @@ function getDayHourMonth(weatherData, i) {
 
 // For icon solution: https://stackoverflow.com/questions/44177417/how-to-display-openweathermap-weather-icon
 
-document.getElementById('get-weather').onclick = function (){
-
+document.getElementById("get-weather").onclick = function () {
   if (clickRoute[0]) {
     let latLon = [clickRoute[0][1], clickRoute[0][0]];
     // make request for allWeatherData with latLon and day
-    let relWeatherData = getRelevantWeatherData(weatherData)
+    let relWeatherData = getRelevantWeatherData(weatherData);
     // function to fill div after getting all the relevant information
-    document.getElementById('weather-output').innerHTML = `
-    <img src="http://openweathermap.org/img/w/${relWeatherData.weather[0].icon}.png" alt="" srcset=""> 
-    <p>Temp min ${relWeatherData.main.temp_min}</p>
-    <p>Temp max ${relWeatherData.main.temp_max}</p>
-    <p>Temp${relWeatherData.main.temp}</p>
-    <p>Chance of rain${relWeatherData.pop}</p>
-    <p>Wind Speed and direction (units?): ${relWeatherData.wind.speed}km/h ${relWeatherData.wind.deg} deg</p>`;
+    document.getElementById("weather-output").innerHTML = `
+    <div id="weather-info">
+        <img src="http://openweathermap.org/img/w/${
+          relWeatherData.weather[0].icon
+        }.png" alt="" srcset=""> 
+        <div class="weather-item"><span>|</span> ${
+          relWeatherData.main.temp
+        } &deg;C</div>
+        <div class="weather-item" id="temp-max-min">
+          <div>${relWeatherData.main.temp_max} &deg;C</div>
+          <div>${relWeatherData.main.temp_min} &deg;C</div>
+        </div>
+        <div class="weather-item"><span>|</span> ${
+          relWeatherData.pop * 100
+        } %</div>
+        <div class="weather-item"><span>|</span> ${
+          relWeatherData.wind.speed
+        } km/h</div>
+        <div class="weather-item"><span>|</span> ${
+          relWeatherData.wind.deg
+        } deg</div>
+      </div>`;
     console.log(relWeatherData);
   } else {
-    alert("No Starting point selected", "warning", "weather-output")
+    alert("No Starting point selected", "warning", "weather-output");
   }
-  
-}
-
+};
 
 /**
  * Loops through the weather data and find the relevent element based on input hour, day, and month
@@ -85,4 +95,3 @@ function getRelevantWeatherData(weatherData) {
     }
   }
 }
-
