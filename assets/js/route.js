@@ -35,8 +35,6 @@ geocoder.on("result", (e) => {
 
 // set center of map to current location if success
 function successCurrentLocation(e) {
-  console.log(e.coords.latitude, e.coords.longitude);
-  // console.log([e.coords.longitude, e.coords.latitude]);
   map.setCenter([e.coords.longitude, e.coords.latitude]);
   
   return [e.coords.latitude, e.coords.longitude];
@@ -96,7 +94,6 @@ async function createRoute(route) {
     method: "GET",
     url: url,
   }).done(function (data) {
-    console.log(data);
     // Create a GeoJSON feature collection containing the route
     let route = data.routes[0].geometry.coordinates;
     let routeGeoJSON = {
@@ -190,6 +187,11 @@ map.on("click", function (e) {
     parseFloat(coords.lat.toFixed(6)),
   ];
 
+
+  if (clickRoute[0] == clickRoute[clickRoute.length - 1]) {
+    document.getElementById("looped-route").checked = false;
+  }
+
   // if there are two markers in route enable the looped route check box
   if (clickRoute.length > 1) {
     document.getElementById("looped-route").disabled = false;
@@ -258,7 +260,10 @@ function resetRoute() {
 // Function called by button click to remove click from route and update map
 function undoClick() {
   // if more the starting point in clickRoute
-  console.log(clickRoute);
+  if (document.getElementById("looped-route").checked == true) {
+    document.getElementById("looped-route").checked = false;
+  }
+
   if (clickRoute.length > 1) {
     // if there is 2 markers
     if (clickRoute.length == 2) {
@@ -283,6 +288,12 @@ function undoClick() {
     document.getElementById("way-points").innerHTML = clickRoute.length;
   } else {
     resetRoute();
+  }
+
+  console.log(clickRoute);
+
+  if (clickRoute[0] == clickRoute[clickRoute.length - 1]) {
+    document.getElementById("looped-route").checked = true;
   }
 }
 
