@@ -8,6 +8,17 @@ function weatherAPIRequest(latLon, weatherAPIkEY) {
     url: `http://api.openweathermap.org/data/2.5/forecast?lat=${latLon[0]}&lon=${latLon[1]}&units=metric&appid=${weatherAPIkEY}`,
   })
     .done(function (weatherData) {
+      let weatherTime = document.getElementById('weather-input-time');
+      let weatherDay = document.getElementById('weather-input-day');
+      if (weatherTime.value && weatherDay.value) {
+        console.log("hello");
+      } else {
+        alert(
+          "Please choose a day and time",
+          "warning",
+          "weather-output"
+        );
+      }
       let relWeatherData = getRelevantWeatherData(
         weatherData,
         hour,
@@ -27,17 +38,17 @@ function weatherAPIRequest(latLon, weatherAPIkEY) {
       // raindrop icon: 
       // edited with: https://www4.lunapic.com/
       document.getElementById("weather-output").innerHTML = `
-    <div id="weather-info">
-        <img src="http://openweathermap.org/img/w/${icon}.png" alt="" srcset=""> 
-        <div class="weather-item"><span>|</span> ${temp} &deg;C</div>
-        <div class="weather-item" id="temp-max-min">
-          <div>${temp_max} &deg;C</div>
-          <div>${temp_min} &deg;C</div>
-        </div>
-        <div class="weather-item"><span>|</span><img src="assets/images/raindrop-icon.png"/> ${pop} %</div>
-        <div class="weather-item"><span>|</span> ${windSpeed} km/h</div>
-        <div class="weather-item"><span>|</span> ${windDeg} deg</div>
-      </div>`;
+        <div id="weather-info">
+          <img src="http://openweathermap.org/img/w/${icon}.png" alt="" srcset=""> 
+          <div class="weather-item"><span>|</span> ${temp} &deg;C</div>
+          <div class="weather-item" id="temp-max-min">
+            <div>${temp_max} &deg;C</div>
+            <div>${temp_min} &deg;C</div>
+          </div>
+          <div class="weather-item"><span>|</span><img src="assets/images/raindrop-icon.png"/> ${pop} %</div>
+          <div class="weather-item"><span>|</span> ${windSpeed} km/h</div>
+          <div class="weather-item"><span>|</span> ${windDeg} deg</div>
+        </div>`;
     })
     .fail(function () {
       // throw error if request fails
@@ -49,10 +60,10 @@ function weatherAPIRequest(latLon, weatherAPIkEY) {
     });
 }
 
-// variables to act as input
-let hour = 00;
-let day = 26;
-let month = 01;
+// // variables to act as input
+// let hour = 00;
+// let day = 26;
+// let month = 01;
 
 /**
  * Returns an array with day, hour, and, month (as ints) of the ith element in weather array

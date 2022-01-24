@@ -7,7 +7,12 @@ let min = 00,
 for (var i = min; i<=max; i++){
     var opt = document.createElement('option');
     opt.value = i;
-    opt.innerHTML = i;
+    if (i < 10) {
+      opt.innerHTML = "0" + i + ":00";
+    } else {
+      opt.innerHTML = i  + ":00";
+    }
+    
     selectTime.appendChild(opt);
 }
 
@@ -27,7 +32,7 @@ let currentdate = new Date(),
     startDayOption = currentdate.getDay(),
     selectDay = document.getElementById('weather-input-day');
 
-console.log(startDayOption);
+console.log(currentdate.getMonth());
 
 for (var i = startDayOption; i<=startDayOption+3; i++){
   var opt = document.createElement('option');
