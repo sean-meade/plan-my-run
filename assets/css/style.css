@@ -79,6 +79,10 @@ header a {
   color: inherit;
 }
 
+header a:hover {
+  color: inherit;
+}
+
 /* Hero Image */
 #hero-outer {
   min-height: 28rem;
