@@ -1,6 +1,4 @@
 let weatherAPIkEY = "5fc8e9bc79a5a2e82d9c4120d41402cd";
-// let lat = 53.75014;
-// let lon = -7.266155;
 
 function weatherAPIRequest(latLon, weatherAPIkEY) {
   $.ajax({
@@ -8,17 +6,16 @@ function weatherAPIRequest(latLon, weatherAPIkEY) {
     url: `http://api.openweathermap.org/data/2.5/forecast?lat=${latLon[0]}&lon=${latLon[1]}&units=metric&appid=${weatherAPIkEY}`,
   })
     .done(function (weatherData) {
-      let weatherTime = document.getElementById('weather-input-time');
-      let weatherDay = document.getElementById('weather-input-day');
-      if (weatherTime.value && weatherDay.value) {
-        console.log("hello");
-      } else {
-        alert(
-          "Please choose a day and time",
-          "warning",
-          "weather-output"
-        );
+      let weatherTime = document.getElementById("weather-input-time").value;
+      // https://stackoverflow.com/questions/9133102/how-to-grab-substring-before-a-specified-character-jquery-or-javascript
+      let weatherDay = (document.getElementById("weather-input-day").value.split(','));
+      if (!weatherTime || !weatherDay) {
+        alert("Please choose a day and time", "warning", "weather-output");
       }
+      let hour = parseInt(weatherTime);
+      let day = parseInt(weatherDay[0]);
+      let month = parseInt(weatherDay[1]) + 1;
+
       let relWeatherData = getRelevantWeatherData(
         weatherData,
         hour,
@@ -35,7 +32,7 @@ function weatherAPIRequest(latLon, weatherAPIkEY) {
       let windDeg = relWeatherData.wind.deg;
       console.log([icon, temp, temp_max, temp_min, pop, windSpeed, windDeg]);
       // function to fill div after getting all the relevant information
-      // raindrop icon: 
+      // raindrop icon:
       // edited with: https://www4.lunapic.com/
       document.getElementById("weather-output").innerHTML = `
         <div id="weather-info">
@@ -61,9 +58,6 @@ function weatherAPIRequest(latLon, weatherAPIkEY) {
 }
 
 // // variables to act as input
-// let hour = 00;
-// let day = 26;
-// let month = 01;
 
 /**
  * Returns an array with day, hour, and, month (as ints) of the ith element in weather array
@@ -75,6 +69,7 @@ function getDayHourMonth(weatherData, i) {
   let day = weatherData.list[i].dt_txt.substring(8, 10);
   let hour = weatherData.list[i].dt_txt.substring(10, 13);
   let month = weatherData.list[i].dt_txt.substring(5, 7);
+  // console.log(parseInt(day), parseInt(hour), parseInt(month));
   return [parseInt(day), parseInt(hour), parseInt(month)];
 }
 
@@ -87,7 +82,6 @@ document.getElementById("get-weather").onclick = function () {
     let latLon = [clickRoute[0][1], clickRoute[0][0]];
     // make request for allWeatherData with latLon and day
     weatherAPIRequest(latLon, weatherAPIkEY);
-    console.log(weatherAPIRequest(latLon, weatherAPIkEY));
   } else {
     alert("No Starting point selected", "warning", "weather-output");
   }
@@ -107,12 +101,15 @@ function getRelevantWeatherData(weatherData, hour, day, month) {
       if (hourip1 == 0) {
         // console.log(hourip1, hour, houri);
         hourip1 = 24;
+        // console.log("second");
       }
       // if the hour is the same as in the data
       if (hour == houri) {
+        // console.log("hour == houri");
         // console.log(weatherData.list[i], 1);
         return weatherData.list[i];
       } else if (hour < hourip1 && hour >= houri) {
+        // console.log("hour < hourip1 && hour >= houri");
         // else if the hour is within a range
         // console.log(weatherData.list[i], 2);
         return weatherData.list[i];

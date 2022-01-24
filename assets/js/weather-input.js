@@ -34,17 +34,21 @@ Date.prototype.addDays = function(days) {
   return date;
 }
 
-// https://www.delftstack.com/howto/javascript/javascript-get-week-number/#:~:text=The%20getDay()%20function%20returns,current%20week%20number%20is%20calculated.&text=Copy%20currentdate%20%3D%20new%20Date(),)%3B%20var%20numberOfDays%20%3D%20Math.
+let currentdate = new Date();
+let datesArray = [currentdate]
+for (let dayNo = 1; dayNo < 4; dayNo++) {
+  datesArray.push(currentdate.addDays(dayNo))
+}
+    // startDayOption = currentdate.getDay(),
+let selectDay = document.getElementById('weather-input-day');
 
-let currentdate = new Date()
-    startDayOption = currentdate.getDay(),
-    selectDay = document.getElementById('weather-input-day');
+// console.log(datesArray[1].getDate());
 
-console.log(currentdate.getMonth());
-
-for (let d = startDayOption; d <= startDayOption + 3; d++){
+for (let d = 0; d < 4; d++){
   let opt = document.createElement('option');
-  opt.value = i;
-  opt.innerHTML = dayNames[i];
+  // value is [dayNo, MonthNo]
+  opt.value = [parseInt(datesArray[d].getDate()), parseInt(datesArray[d].getMonth())];
+  opt.innerHTML = dayNames[datesArray[d].getDay()];
   selectDay.appendChild(opt);
 }
+
