@@ -1,16 +1,53 @@
-// let weatherAPIkEY = "5fc8e9bc79a5a2e82d9c4120d41402cd";
+let weatherAPIkEY = "5fc8e9bc79a5a2e82d9c4120d41402cd";
 // let lat = 53.75014;
 // let lon = -7.266155;
 
-// $.ajax({
-//   method: "GET",
-//   url: `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${weatherAPIkEY}`,
-// }).done(function (data) {
-//   console.log(data);
-// }).fail(function () {
-//   // throw error if request fails
-//   alert("weather failed");
-// });
+function weatherAPIRequest(latLon, weatherAPIkEY) {
+  $.ajax({
+    method: "GET",
+    url: `http://api.openweathermap.org/data/2.5/forecast?lat=${latLon[0]}&lon=${latLon[1]}&units=metric&appid=${weatherAPIkEY}`,
+  })
+    .done(function (weatherData) {
+      let relWeatherData = getRelevantWeatherData(
+        weatherData,
+        hour,
+        day,
+        month
+      );
+
+      let icon = relWeatherData.weather[0].icon;
+      let temp = relWeatherData.main.temp;
+      let temp_max = relWeatherData.main.temp_max;
+      let temp_min = relWeatherData.main.temp_min;
+      let pop = relWeatherData.pop * 100;
+      let windSpeed = relWeatherData.wind.speed;
+      let windDeg = relWeatherData.wind.deg;
+      console.log([icon, temp, temp_max, temp_min, pop, windSpeed, windDeg]);
+      // function to fill div after getting all the relevant information
+      // raindrop icon: 
+      // edited with: https://www4.lunapic.com/
+      document.getElementById("weather-output").innerHTML = `
+    <div id="weather-info">
+        <img src="http://openweathermap.org/img/w/${icon}.png" alt="" srcset=""> 
+        <div class="weather-item"><span>|</span> ${temp} &deg;C</div>
+        <div class="weather-item" id="temp-max-min">
+          <div>${temp_max} &deg;C</div>
+          <div>${temp_min} &deg;C</div>
+        </div>
+        <div class="weather-item"><span>|</span><img src="assets/images/raindrop-icon.png"/> ${pop} %</div>
+        <div class="weather-item"><span>|</span> ${windSpeed} km/h</div>
+        <div class="weather-item"><span>|</span> ${windDeg} deg</div>
+      </div>`;
+    })
+    .fail(function () {
+      // throw error if request fails
+      alert(
+        "Request failed for wether information",
+        "warning",
+        "weather-output"
+      );
+    });
+}
 
 // variables to act as input
 let hour = 00;
@@ -38,31 +75,8 @@ document.getElementById("get-weather").onclick = function () {
   if (clickRoute[0]) {
     let latLon = [clickRoute[0][1], clickRoute[0][0]];
     // make request for allWeatherData with latLon and day
-    let relWeatherData = getRelevantWeatherData(weatherData);
-    // function to fill div after getting all the relevant information
-    document.getElementById("weather-output").innerHTML = `
-    <div id="weather-info">
-        <img src="http://openweathermap.org/img/w/${
-          relWeatherData.weather[0].icon
-        }.png" alt="" srcset=""> 
-        <div class="weather-item"><span>|</span> ${
-          relWeatherData.main.temp
-        } &deg;C</div>
-        <div class="weather-item" id="temp-max-min">
-          <div>${relWeatherData.main.temp_max} &deg;C</div>
-          <div>${relWeatherData.main.temp_min} &deg;C</div>
-        </div>
-        <div class="weather-item"><span>|</span> ${
-          relWeatherData.pop * 100
-        } %</div>
-        <div class="weather-item"><span>|</span> ${
-          relWeatherData.wind.speed
-        } km/h</div>
-        <div class="weather-item"><span>|</span> ${
-          relWeatherData.wind.deg
-        } deg</div>
-      </div>`;
-    console.log(relWeatherData);
+    weatherAPIRequest(latLon, weatherAPIkEY);
+    console.log(weatherAPIRequest(latLon, weatherAPIkEY));
   } else {
     alert("No Starting point selected", "warning", "weather-output");
   }
@@ -72,7 +86,7 @@ document.getElementById("get-weather").onclick = function () {
  * Loops through the weather data and find the relevent element based on input hour, day, and month
  */
 
-function getRelevantWeatherData(weatherData) {
+function getRelevantWeatherData(weatherData, hour, day, month) {
   for (let i = 0; i < weatherData.list.length - 1; i++) {
     let [dayi, houri, monthi] = getDayHourMonth(weatherData, i);
     let [dayip1, hourip1, monthip1] = getDayHourMonth(weatherData, i + 1);

@@ -245,13 +245,13 @@ footer a {
   }
 }
 
-@media only screen and (max-width: 370px) {
+@media only screen and (max-width: 390px) {
   #temp-max-min {
     display: none;
   }
 
   .weather-item {
-    margin: auto 0.2rem;
+    margin: auto 0.1rem;
   }
 }
 
