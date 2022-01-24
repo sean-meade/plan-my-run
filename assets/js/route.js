@@ -36,7 +36,6 @@ geocoder.on("result", (e) => {
 // set center of map to current location if success
 function successCurrentLocation(e) {
   map.setCenter([e.coords.longitude, e.coords.latitude]);
-  
   return [e.coords.latitude, e.coords.longitude];
 }
 
@@ -289,8 +288,6 @@ function undoClick() {
   } else {
     resetRoute();
   }
-
-  console.log(clickRoute);
 
   if (clickRoute[0] == clickRoute[clickRoute.length - 1]) {
     document.getElementById("looped-route").checked = true;

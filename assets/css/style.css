@@ -164,9 +164,11 @@ header a:hover {
   margin-bottom: 1rem;
 }
 
-.input input {
+.input input,
+#get-weather {
   padding: 0.3rem;
   margin: 0 1rem;
+  border-radius: 5px;
 }
 
 .input input[type='checkbox'] {
