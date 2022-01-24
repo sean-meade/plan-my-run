@@ -242,7 +242,7 @@ function resetRoute() {
   clicks = turf.featureCollection([]);
   
   // Empty distance output
-  document.getElementById("distance").innerHTML = "";
+  document.getElementById("distance").innerHTML = "0";
   // empyty layer for starting point marker with placeholder
   map.getSource("starting-point").setData(placeholder);
   // empyty layer for route with empty clicks
@@ -258,6 +258,7 @@ function resetRoute() {
 // Function called by button click to remove click from route and update map
 function undoClick() {
   // if more the starting point in clickRoute
+  console.log(clickRoute);
   if (clickRoute.length > 1) {
     // if there is 2 markers
     if (clickRoute.length == 2) {
@@ -265,11 +266,13 @@ function undoClick() {
       clickRoute.pop();
       // update route on map and distance dispalyed on html
       map.getSource("route").setData(clicks);
-      document.getElementById("distance").innerHTML = "";
+      document.getElementById("distance").innerHTML = "0";
+      document.getElementById("looped-route").disabled = true;
     } else {
       // otherwise remove marker and update route
       clickRoute.pop();
       createRoute(clickRoute);
+      
     }
     // remove last click from clicks
     clicks.features.pop();
@@ -279,7 +282,6 @@ function undoClick() {
     // update number of clicks displayed in html
     document.getElementById("way-points").innerHTML = clickRoute.length;
   } else {
-
     resetRoute();
   }
 }
