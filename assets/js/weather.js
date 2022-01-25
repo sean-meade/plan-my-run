@@ -50,7 +50,7 @@ function weatherAPIRequest(latLon, weatherAPIkEY) {
     .fail(function () {
       // throw error if request fails
       alert(
-        "Request failed for wether information",
+        "Request failed for weather information",
         "warning",
         "weather-output"
       );
