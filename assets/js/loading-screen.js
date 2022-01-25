@@ -17,8 +17,6 @@ function blurring() {
     document.body.style.overflow = "visible";
   }
 
-  console.log((1 - load/100).toFixed(2));
-
   loadText.innerText = `${load}%`;
   loadText.style.opacity = (1 - load/100);
   bg.style.filter = `blur(${Math.round(load/3)}px)`;
