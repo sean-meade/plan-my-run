@@ -11,8 +11,8 @@
  * @param {*} alertPlaceholder = div above button pressed
  */
 function alert(message, type, alertPlaceholder) {
-  var alertPlaceholder = document.getElementById(alertPlaceholder);
-  alertPlaceholder.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+  var alertPlaceholderDiv = document.getElementById(alertPlaceholder);
+  alertPlaceholderDiv.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
   // alertPlaceholder.append(wrapper)
 }
 

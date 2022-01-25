@@ -1,6 +1,6 @@
 
 // https://stackoverflow.com/questions/8674618/adding-options-to-select-with-javascript/8674667
-let min = 00,
+let min = 0,
     max = 23,
     selectTime = document.getElementById('weather-input-time');
 
@@ -24,7 +24,7 @@ let dayNames = [
   "Thursday",
   "Friday",
   "Saturday"
-]
+];
 
 // https://stackoverflow.com/questions/563406/add-days-to-javascript-date
 // A function that adds a number of days to the given date and returns the date
@@ -32,12 +32,12 @@ Date.prototype.addDays = function(days) {
   let date = new Date(this.valueOf());
   date.setDate(date.getDate() + days);
   return date;
-}
+};
 
 let currentdate = new Date();
-let datesArray = [currentdate]
+let datesArray = [currentdate];
 for (let dayNo = 1; dayNo < 4; dayNo++) {
-  datesArray.push(currentdate.addDays(dayNo))
+  datesArray.push(currentdate.addDays(dayNo));
 }
     // startDayOption = currentdate.getDay(),
 let selectDay = document.getElementById('weather-input-day');
