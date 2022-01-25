@@ -36,7 +36,7 @@ function weatherAPIRequest(latLon, weatherAPIkEY) {
       // edited with: https://www4.lunapic.com/
       document.getElementById("weather-output").innerHTML = `
         <div id="weather-info">
-          <img src="http://openweathermap.org/img/w/${icon}.png" alt="" srcset=""> 
+          <img src="https://openweathermap.org/img/w/${icon}.png" alt="" srcset=""> 
           <div class="weather-item"><span>|</span> ${temp} &deg;C</div>
           <div class="weather-item" id="temp-max-min">
             <div>${temp_max} &deg;C</div>
