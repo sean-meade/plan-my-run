@@ -3,7 +3,7 @@ let weatherAPIkEY = "5fc8e9bc79a5a2e82d9c4120d41402cd";
 function weatherAPIRequest(latLon, weatherAPIkEY) {
   $.ajax({
     method: "GET",
-    url: `http://api.openweathermap.org/data/2.5/forecast?lat=${latLon[0]}&lon=${latLon[1]}&units=metric&appid=${weatherAPIkEY}`,
+    url: `https://api.openweathermap.org/data/2.5/forecast?lat=${latLon[0]}&lon=${latLon[1]}&units=metric&appid=${weatherAPIkEY}`,
   })
     .done(function (weatherData) {
       let weatherTime = document.getElementById("weather-input-time").value;
