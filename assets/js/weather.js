@@ -30,7 +30,7 @@ function weatherAPIRequest(latLon, weatherAPIkEY) {
       let pop = relWeatherData.pop * 100;
       let windSpeed = relWeatherData.wind.speed;
       let windDeg = relWeatherData.wind.deg;
-      console.log([icon, temp, temp_max, temp_min, pop, windSpeed, windDeg]);
+      // console.log([icon, temp, temp_max, temp_min, pop, windSpeed, windDeg]);
       // function to fill div after getting all the relevant information
       // raindrop icon:
       // edited with: https://www4.lunapic.com/

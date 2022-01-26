@@ -100,12 +100,14 @@ header a:hover {
 
 #cover-text {
   display: flex;
+  flex-direction: column;
   width: 90%;
   height: fit-content;
   text-transform: uppercase;
   position: absolute;
+  color: #FFF;
   left: 5%;
-  top: 40%;
+  top: 30%;
   text-align: center;
 }
 
@@ -165,7 +167,8 @@ header a:hover {
 }
 
 .input input,
-#get-weather {
+#get-weather,
+#use-current-location {
   padding: 0.3rem;
   margin: 0 1rem;
   border-radius: 5px;
@@ -247,7 +250,7 @@ footer a {
   }
 }
 
-@media only screen and (max-width: 390px) {
+@media only screen and (max-width: 410px) {
   #temp-max-min {
     display: none;
   }

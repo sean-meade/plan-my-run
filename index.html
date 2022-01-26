@@ -7,7 +7,7 @@
   <meta name="description" content="An app to help you plan run ahead of time. Giving you the route distance and weather">
   <meta name="keywords" content="Running, plan, route distance, weather, plan my run, run">
   
-  <title>Document</title>
+  <title>Plan My Run</title>
   <!-- turf -->
   <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
   <!-- ajax -->
@@ -30,21 +30,15 @@
 </head>
 <body>
   <!-- Header Section -->
-  <header>
-    <h1>
-      <a href="#">
-        PLAN MY RUN
-      </a>
-    </h1>
-  </header>
 
   <!-- Hero Image -->
-  <section id="hero-outer">
+  <header id="hero-outer">
     <div id="hero-image"></div>
     <div id="cover-text">
+      <h1>PLAN MY RUN</h1>
       <h2>Get weather and route information to plan your runs</h2>
     </div>
-  </section>
+  </header>
 
   <!-- Location input -->
   <section>
@@ -56,13 +50,18 @@
       <div id="geocoder"></div>
       <p>OR</p>
       <div id="noCurrentLocationAlert" class="bootstrap-alert"></div>
-      <input type="button" value="Use Current Location" onclick="useCurrentLocation()" id="use-current-location">
+      <input id="use-current-location" type="button" value="Start where I am" onclick="useCurrentLocAsStart()">
     </form>
   </section>
 
   <hr>
 
   <!-- Plan Route -->
+  <section id="map-section">
+    <div id="map-alerts" class="bootstrap-alert"></div>
+    <div id="map"></div>
+  </section>
+
   <section id="route-section">
     <div class="step-header">
       <div class="circle">2</div>
@@ -77,7 +76,7 @@
         </div>
         <div id="input-lower">
           <input type="button" value="Reset Route" onclick="resetRoute()">
-          <input type="button" value="Start where I am" onclick="useCurrentLocAsStart()">
+          
         </div>
       </div>
       <div id="noCurrentLocationAlertForMap" class="bootstrap-alert"></div>
@@ -88,10 +87,7 @@
     </div>
   </section>
 
-  <section id="map-section">
-    <div id="map-alerts" class="bootstrap-alert"></div>
-    <div id="map"></div>
-  </section>
+  
 
   <hr>
 
@@ -134,9 +130,7 @@
   <script src="assets/js/weather-input.js"></script>
   <script src="assets/js/loading-screen.js"></script>
   <script src="assets/js/live-alert.js"></script>
-  <script src="assets/js/route.js"></script>
-
-  
+  <script src="assets/js/route.js"></script>  
   
 </body>
 </html>
