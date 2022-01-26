@@ -289,7 +289,7 @@ function undoClick() {
     resetRoute();
   }
 
-  if (clickRoute[0] == clickRoute[clickRoute.length - 1]) {
+  if (clickRoute[0] == clickRoute[clickRoute.length - 1] && clickRoute.length > 1) {
     document.getElementById("looped-route").checked = true;
   }
 }
