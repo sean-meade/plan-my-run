@@ -7,6 +7,16 @@ let load = 0;
 
 let int = setInterval(blurring, 30);
 
+
+// https://www.designcise.com/web/tutorial/how-to-force-scroll-to-the-top-of-the-page-on-page-reload-using-javascript
+if (history.scrollRestoration) {
+  history.scrollRestoration = 'manual';
+} else {
+  window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+  }
+}
+
 function blurring() {
   load++;
 
