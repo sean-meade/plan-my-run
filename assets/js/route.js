@@ -16,7 +16,7 @@ const map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/mapbox/streets-v11",
   center: [-7.266155, 53.75014],
-  zoom: 9,
+  zoom: 5,
 }); // map variable
 
 // Create search field for location (i.e. geocoder)
@@ -34,17 +34,30 @@ geocoder.on("result", (e) => {
 });
 
 // set center of map to current location if success
+/**
+ * 
+ * @param {*} e 
+ * @returns 
+ */
 function successCurrentLocation(e) {
   map.setCenter([e.coords.longitude, e.coords.latitude]);
   return [e.coords.latitude, e.coords.longitude];
 }
 
 // If current location can't be found send alert
+/**
+ * 
+ * @param {*} e 
+ */
 function errorCurrentLocation(e) {
   alert("Couldn't find your current location", "warning", "noCurrentLocationAlert");
 }
 
 // Function called when button is pressed for using current location
+/**
+ * 
+ * @param {*} e 
+ */
 function useCurrentLocation(e) {
   navigator.geolocation.getCurrentPosition(
     successCurrentLocation,
@@ -56,12 +69,19 @@ function useCurrentLocation(e) {
 }
 
 // function that updates the route-points layer to add maker to map
+/**
+ * 
+ * @param {*} clicks 
+ */
 function addMarker(clicks) {
   map.getSource("route-points").setData(clicks);
 }
 
 // if the first and last value is the same in clickRoute and looped route in unchecked remove the looped route
 // else loop the route by adding first maker value to the end of clickRoute and remove if unticked
+/**
+ * 
+ */
 function loopedRoute() {
   if (
     clickRoute[0] == clickRoute[clickRoute.length - 1] &&
@@ -80,6 +100,10 @@ function loopedRoute() {
 // route = [[long1, lat1], [long2, lat2], ... [longn, latn]]
 // where n is up to 24
 // and latn and longn are floats with up 6 decimal places (e.g. [-7.266155, 53.750145])
+/**
+ * 
+ * @param {*} route 
+ */
 async function createRoute(route) {
   // create url to make request with route and API key
   let url =
@@ -116,6 +140,9 @@ async function createRoute(route) {
 }
 
 // Load the map on when the page has loaded
+/**
+ * 
+ */
 map.on("load", function () {
   map.addLayer({
     id: "starting-point",
@@ -300,6 +327,8 @@ function errorCurrentLocation2(e) {
 }
 
 function useCurrentLocAsStart() {
+
+  document.getElementById("looped-route").checked == true;
   resetRoute();
   navigator.geolocation.getCurrentPosition(
     setStartMarker,
