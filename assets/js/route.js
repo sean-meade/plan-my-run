@@ -2,16 +2,15 @@
 mapboxgl.accessToken =
   "pk.eyJ1Ijoic2Vhbi1tZWFkZSIsImEiOiJja3lmeDZkM3Iwc21hMm9xcG95YnFqaHh3In0.p4oU6PP7a92U1JYLBCLG2g";
 
-// an empty geoJSON feature collection for place holder
+// Create geoJSON feature collection variables 
+// an empty place holder
 let placeholder = turf.featureCollection([]);
-
-// a geoJSON feature collection to track clicks to add markers to map
+// to track clicks to add markers to map
 let markers = turf.featureCollection([]);
-
 // A list to track clicks in the form of [long, lat] where long and lat are are floats with up 6 decimal places
 let clickRoute = [];
 
-// Create search field for choosing a location for the map to go to (i.e. geocoder)
+// Search field for choosing a location for the map to go to (i.e. geocoder)
 const geocoder = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   types: "country,region,place,postcode,locality,neighborhood,address,poi",
@@ -34,85 +33,12 @@ geocoder.on("result", (e) => {
 });
 
 /**
- * function that updates the route-points layer to add a maker to map
- * 
- * @param {turf featureCollection} markers Takes one or more Feature|Features and creates a FeatureCollection
- */
-function addMarker(markers) {
-  map.getSource("route-points").setData(markers);
-}
-
-
-/**
- * function thats called when looped route checkbox is clicked 
- * if the first and last value is the same in clickRoute and looped route in unchecked remove the looped route
- * else loop the route by adding first maker value to the end of clickRoute
- * 
- */
-function loopedRoute() {
-  if (
-    clickRoute[0] == clickRoute[clickRoute.length - 1] &&
-    document.getElementById("looped-route").checked == false
-  ) {
-    clickRoute.pop();
-  } else {
-    clickRoute.push(clickRoute[0]);
-  }
-
-  // Create the route with updated clickRoute
-  createRoute(clickRoute);
-}
-
-/**
- * function that creates a route with an array of lat, long values
- * clickRoute = [[long1, lat1], [long2, lat2], ... [longn, latn]]
- * where n is up to 24
- * and latn and longn are floats with up 6 decimal places (e.g. [-7.266155, 53.750145])
- * 
- * @param {Array} clickRoute an array containing arrays with two entries latitude and longitude
- */
-async function createRoute(clickRoute) {
-  // create url to make request with route and API key
-  let url =
-    "https://api.mapbox.com/directions/v5/mapbox/walking/" +
-    clickRoute.join(";") +
-    "?geometries=geojson&access_token=" +
-    mapboxgl.accessToken;
-
-  // Call a GET request to Mapbox directions API and receive data back
-  // get the route coordinates and create a GeoJSON feature called routeGeoJSON to hold the route
-  // get distance of route from the data 
-  // display route on the map and distance to html
-  $.ajax({
-    method: "GET",
-    url: url,
-  }).done(function (data) {
-    let route = data.routes[0].geometry.coordinates;
-    let routeGeoJSON = {
-      type: "Feature",
-      properties: {},
-      geometry: {
-        type: "LineString",
-        coordinates: route,
-      },
-    };
-    map.getSource("route").setData(routeGeoJSON);
-
-    let distance = data.routes[0].distance / 1000;
-    document.getElementById("distance").innerHTML = distance.toFixed(2) + "km";
-  }).fail(function () {
-    // throw error if request fails
-    alert("Request for route information failed please contact creator or site", "danger", "map-alerts");
-  });
-}
-
-/**
  * Function that loads the map when the page is loading
  * Adds layers for starting point, markers (each click after starting point)
  * and the route to the map
  * 
  */
-map.on("load", function () {
+ map.on("load", function () {
   // Layer for starting point
   map.addLayer({
     id: "starting-point",
@@ -169,59 +95,81 @@ map.on("load", function () {
   );
 });
 
-// When map is clicked collect lat and lng and update map accordingly
 /**
- * Function that is called when the map is clicked.
+ * function that updates the route-points layer to add a maker to map
  * 
- * 
- * @param {click Interaction} e click Interaction fired when a pointing device is pressed and released at the same point on the map
- *                              link to example: https://docs.mapbox.com/mapbox-gl-js/api/map/#map.event:click
+ * @param {turf featureCollection} markers Takes one or more Feature|Features and creates a FeatureCollection
  */
-map.on("click", function (e) {
-  // enable undo button on map when first marker is set
-  document.getElementById("undo").disabled = false;
+function addMarker(markers) {
+  map.getSource("route-points").setData(markers);
+}
 
-  // Collect lat and long values from click and set as an array 
-  let coords = e.lngLat;
-  let click = [
-    parseFloat(coords.lng.toFixed(6)),
-    parseFloat(coords.lat.toFixed(6)),
-  ];
-
-  if (clickRoute[0] == clickRoute[clickRoute.length - 1]) {
-    document.getElementById("looped-route").checked = false;
-  }
-
-  // if there are two markers in route enable the looped route check box
-  if (clickRoute.length > 0) {
-    document.getElementById("looped-route").disabled = false;
-  }
-
-  // if the limit of 24 clicks hasn't been met
-  if (clickRoute.length < 24) {
-    // Add click to route
-    updateRoute(click);
-
-    // set the click as a geoJSON feature to add to markers
-    let pt = turf.point([click[0], click[1]], {
-      orderTime: Date.now(),
-      key: Math.random(),
-    });
-
-    // if it's the first click add layer to first click else add marker and create route
-    if (clickRoute.length == 1) {
-      setStartMarker(click);
-    } else {
-      markers.features.push(pt);
-      addMarker(markers);
-      createRoute(clickRoute);
-    }
-
+/**
+ * function thats called when looped route checkbox is clicked 
+ * if the first and last value is the same in clickRoute and looped route in unchecked remove the looped route
+ * else loop the route by adding first maker value to the end of clickRoute
+ * 
+ */
+ document.getElementById("looped-route").onclick = function () {
+  if (
+    clickRoute[0] == clickRoute[clickRoute.length - 1] &&
+    document.getElementById("looped-route").checked == false
+  ) {
+    clickRoute.pop();
   } else {
-    // throw error saying reached limit of clicks
-    alert("Reached limit of way points", "warning", "map-alerts");
+    clickRoute.push(clickRoute[0]);
   }
-}); // map on click
+
+  // Create the route with updated clickRoute
+  createRoute(clickRoute);
+}
+
+/**
+ * function that creates a route with an array of lat, long values
+ * clickRoute = [[long1, lat1], [long2, lat2], ... [longn, latn]]
+ * where n is up to 24
+ * and latn and longn are floats with up 6 decimal places (e.g. [-7.266155, 53.750145])
+ * 
+ * @param {Array} clickRoute an array containing arrays with two entries latitude and longitude
+ */
+async function createRoute(clickRoute) {
+  // create url to make request with route and API key
+  let url =
+    "https://api.mapbox.com/directions/v5/mapbox/walking/" +
+    clickRoute.join(";") +
+    "?geometries=geojson&access_token=" +
+    mapboxgl.accessToken;
+
+  // Call a GET request to Mapbox directions API and receive data back
+  // get the route coordinates and create a GeoJSON feature called routeGeoJSON to hold the route
+  // get distance of route from the data 
+  // display route on the map and distance to html
+  $.ajax({
+    method: "GET",
+    url: url,
+  }).done(function (data) {
+    let route = data.routes[0].geometry.coordinates;
+    let routeGeoJSON = {
+      type: "Feature",
+      properties: {},
+      geometry: {
+        type: "LineString",
+        coordinates: route,
+      },
+    };
+    map.getSource("route").setData(routeGeoJSON);
+
+    let distance = data.routes[0].distance / 1000;
+    document.getElementById("distance").innerHTML = distance.toFixed(2) + "km";
+  }).fail(function () {
+    // throw error if request fails
+    alert("Request for route information failed please contact creator or site", "danger", "map-alerts");
+  });
+}
+
+
+
+
 
 /**
  * A function that when a click is made on map updates clickRoute with the click and updates number of markers left
@@ -243,7 +191,8 @@ function updateRoute(click) {
  * disables the undo button
  * 
  */
-function resetRoute() {
+document.getElementById("reset-route").onclick = function () {
+
   document.getElementById("looped-route").checked = false;
   document.getElementById("looped-route").disabled = true;
 
@@ -268,7 +217,7 @@ function resetRoute() {
  * Updates looped route checkbox accordingly
  * 
  */
-function undoClick() {
+document.getElementById("undo").onclick = function () {
 
   if (clickRoute.length > 1) {
     if (clickRoute.length == 2) {
@@ -318,7 +267,7 @@ function errorCurrentLocation() {
  * Resets the route first and then sets starting marker if successful else 
  * serves users with alert through errorCurrentLocation
  */
- function useCurrentLocAsStart() {
+ document.getElementById("use-current-location").onclick = function () {
 
   resetRoute();
   navigator.geolocation.getCurrentPosition(
@@ -355,4 +304,58 @@ function setStartMarker(click) {
   
 }
 
+// --------------------- Entry Point ---------------------
 
+// When map is clicked collect lat and lng and update map accordingly
+/**
+ * Function that is called when the map is clicked.
+ * 
+ * 
+ * @param {click Interaction} e click Interaction fired when a pointing device is pressed and released at the same point on the map
+ *                              link to example: https://docs.mapbox.com/mapbox-gl-js/api/map/#map.event:click
+ */
+ map.on("click", function (e) {
+  // enable undo button on map when first marker is set
+  document.getElementById("undo").disabled = false;
+
+  // Collect lat and long values from click and set as an array 
+  let coords = e.lngLat;
+  let click = [
+    parseFloat(coords.lng.toFixed(6)),
+    parseFloat(coords.lat.toFixed(6)),
+  ];
+
+  if (clickRoute[0] == clickRoute[clickRoute.length - 1]) {
+    document.getElementById("looped-route").checked = false;
+  }
+
+  // if there are two markers in route enable the looped route check box
+  if (clickRoute.length > 0) {
+    document.getElementById("looped-route").disabled = false;
+  }
+
+  // if the limit of 24 clicks hasn't been met
+  if (clickRoute.length < 24) {
+    // Add click to route
+    updateRoute(click);
+
+    // set the click as a geoJSON feature to add to markers
+    let pt = turf.point([click[0], click[1]], {
+      orderTime: Date.now(),
+      key: Math.random(),
+    });
+
+    // if it's the first click add layer to first click else add marker and create route
+    if (clickRoute.length == 1) {
+      setStartMarker(click);
+    } else {
+      markers.features.push(pt);
+      addMarker(markers);
+      createRoute(clickRoute);
+    }
+
+  } else {
+    // throw error saying reached limit of clicks
+    alert("Reached limit of way points", "warning", "map-alerts");
+  }
+}); // map on click
