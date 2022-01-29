@@ -6,7 +6,7 @@ mapboxgl.accessToken =
 let placeholder = turf.featureCollection([]);
 
 // a geoJSON feature collection to track clicks to add markers to map
-let clicks = turf.featureCollection([]);
+let markers = turf.featureCollection([]);
 
 // A list to track clicks
 let clickRoute = [];
@@ -33,13 +33,13 @@ geocoder.on("result", (e) => {
   map.setCenter(e.result.center);
 });
 
-// function that updates the route-points layer to add maker to map
 /**
+ * function that updates the route-points layer to add maker to map
  * 
- * @param {*} clicks 
+ * @param {turf featureCollection} markers Takes one or more Feature|Features and creates a FeatureCollection
  */
-function addMarker(clicks) {
-  map.getSource("route-points").setData(clicks);
+function addMarker(markers) {
+  map.getSource("route-points").setData(markers);
 }
 
 // if the first and last value is the same in clickRoute and looped route in unchecked remove the looped route
@@ -61,13 +61,14 @@ function loopedRoute() {
   createRoute(clickRoute);
 }
 
-// create a route with an array of lat, long values
-// route = [[long1, lat1], [long2, lat2], ... [longn, latn]]
-// where n is up to 24
-// and latn and longn are floats with up 6 decimal places (e.g. [-7.266155, 53.750145])
+
 /**
+ * create a route with an array of lat, long values
+ * route = [[long1, lat1], [long2, lat2], ... [longn, latn]]
+ * where n is up to 24
+ * and latn and longn are floats with up 6 decimal places (e.g. [-7.266155, 53.750145])
  * 
- * @param {*} route 
+ * @param {Array} route an array containing arrays with two entries latitude and longitude
  */
 async function createRoute(route) {
   // create url to make request with route and API key
@@ -129,7 +130,7 @@ map.on("load", function () {
     id: "route-points",
     type: "symbol",
     source: {
-      data: clicks,
+      data: markers,
       type: "geojson",
     },
     layout: {
@@ -208,9 +209,9 @@ map.on("click", function (e) {
       setStartMarker(click);
     } else {
       // click added to clicks
-      clicks.features.push(pt);
+      markers.features.push(pt);
       // add click to route-points layer
-      addMarker(clicks);
+      addMarker(markers);
       // create route of lines
       createRoute(clickRoute);
     }
@@ -231,18 +232,18 @@ function updateRoute(click) {
 function resetRoute() {
   document.getElementById("looped-route").checked = false;
   document.getElementById("looped-route").disabled = true;
-  // Empty clickRoute and clicks
+  // Empty clickRoute and markers
   clickRoute = [];
-  clicks = turf.featureCollection([]);
+  markers = turf.featureCollection([]);
   
   // Empty distance output
   document.getElementById("distance").innerHTML = "0";
   // empyty layer for starting point marker with placeholder
   map.getSource("starting-point").setData(placeholder);
-  // empyty layer for route with empty clicks
-  map.getSource("route").setData(clicks);
-  // empyty layer for markers with clicks
-  addMarker(clicks);
+  // empyty layer for route with empty markers
+  map.getSource("route").setData(markers);
+  // empyty layer for markers with markers
+  addMarker(markers);
   // disable undo button
   document.getElementById("undo").disabled = true;
   // update number of clicks left
@@ -262,7 +263,7 @@ function undoClick() {
       // remove marker
       clickRoute.pop();
       // update route on map and distance dispalyed on html
-      map.getSource("route").setData(clicks);
+      map.getSource("route").setData(markers);
       document.getElementById("distance").innerHTML = "0";
       document.getElementById("looped-route").disabled = true;
     } else {
@@ -271,12 +272,12 @@ function undoClick() {
       createRoute(clickRoute);
       
     }
-    // remove last click from clicks
-    clicks.features.pop();
+    // remove last click from markers
+    markers.features.pop();
     // update markers on map
-    addMarker(clicks);
+    addMarker(markers);
 
-    // update number of clicks displayed in html
+    // update number of markers displayed in html
     document.getElementById("way-points").innerHTML = clickRoute.length;
   } else {
     resetRoute();
