@@ -11,43 +11,21 @@ function printOut(weatherAPIkEY) {
  *                        places representing latitude and longitude
  * @param {String} weatherAPIkEY string containing weather API key from weatherapi.com
  */
-async function weatherAPIRequest(latLon, weatherAPIkEY) {
+async function weatherAPIRequest(latLon, weatherAPIkEY, hour, day, month) {
   // console.log(latLon, weatherAPIkEY);
   $.ajax({
     method: "GET",
     url: `https://api.openweathermap.org/data/2.5/forecast?lat=${latLon[0]}&lon=${latLon[1]}&units=metric&appid=${weatherAPIkEY}`,
   })
     .done(function (weatherData) {
-      let weatherTime = document.getElementById("weather-input-time").value;
-      // https://stackoverflow.com/questions/9133102/how-to-grab-substring-before-a-specified-character-jquery-or-javascript
-      let weatherDay = document
-        .getElementById("weather-input-day")
-        .value.split(",");
-
-      let today = new Date();
-
-      let hour = parseInt(weatherTime);
-      let day = parseInt(weatherDay[0]);
-      let month = parseInt(weatherDay[1]) + 1;
-
-      if (
-        !weatherTime ||
-        !weatherDay ||
-        (hour <= today.getHours() && day == today.getDate())
-      ) {
-        alert(
-          "Please choose a day and time either now or in the future",
-          "warning",
-          "weather-output"
-        );
-        }
-
       let relWeatherData = getRelevantWeatherData(
         weatherData,
         hour,
         day,
         month
       );
+
+      console.log(relWeatherData);
 
       // function to fill div after getting all the relevant information
       // raindrop icon:
@@ -111,9 +89,17 @@ function getDayHourMonth(weatherData, i) {
 function getRelevantWeatherData(weatherData, hour, day, month) {
   for (let i = 0; i < weatherData.list.length - 1; i++) {
     let [dayi, houri, monthi] = getDayHourMonth(weatherData, i);
-    let mostRecentWeatherHour = parseInt(weatherData.list[0].dt_txt.substring(10, 13));
-    let mostRecentWeatherDay = parseInt(weatherData.list[0].dt_txt.substring(8, 10))
-    if (hour <= mostRecentWeatherHour && hour >= mostRecentWeatherHour - 2 && mostRecentWeatherDay == day) {
+    let mostRecentWeatherHour = parseInt(
+      weatherData.list[0].dt_txt.substring(10, 13)
+    );
+    let mostRecentWeatherDay = parseInt(
+      weatherData.list[0].dt_txt.substring(8, 10)
+    );
+    if (
+      hour <= mostRecentWeatherHour &&
+      hour >= mostRecentWeatherHour - 2 &&
+      mostRecentWeatherDay == day
+    ) {
       return weatherData.list[0];
     }
     let hourip1 = getDayHourMonth(weatherData, i + 1)[1];
@@ -136,10 +122,32 @@ function getRelevantWeatherData(weatherData, hour, day, month) {
 // --------------------- Entry Point ---------------------
 // For icon solution: https://stackoverflow.com/questions/44177417/how-to-display-openweathermap-weather-icon
 document.getElementById("get-weather").onclick = function () {
-  if (clickRoute[0]) {
+  let weatherTime = document.getElementById("weather-input-time").value;
+  // https://stackoverflow.com/questions/9133102/how-to-grab-substring-before-a-specified-character-jquery-or-javascript
+  let weatherDay = document
+    .getElementById("weather-input-day")
+    .value.split(",");
+
+  let today = new Date();
+
+  let hour = parseInt(weatherTime);
+  let day = parseInt(weatherDay[0]);
+  let month = parseInt(weatherDay[1]) + 1;
+
+  if (
+    !weatherTime ||
+    !weatherDay ||
+    (hour <= today.getHours() && day == today.getDate())
+  ) {
+    alert(
+      "Please choose a day and time either now or in the future",
+      "warning",
+      "weather-output"
+    );
+  } else if (clickRoute[0]) {
     let latLon = [clickRoute[0][1], clickRoute[0][0]];
     // make request for allWeatherData with latLon and day
-    weatherAPIRequest(latLon, weatherAPIkEY);
+    weatherAPIRequest(latLon, weatherAPIkEY, hour, day, month);
   } else {
     alert("No Starting point selected", "warning", "weather-output");
   }
