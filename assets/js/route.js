@@ -167,10 +167,6 @@ async function createRoute(clickRoute) {
   });
 }
 
-
-
-
-
 /**
  * A function that when a click is made on map updates clickRoute with the click and updates number of markers left
  * 

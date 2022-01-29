@@ -146,6 +146,10 @@ header a:hover {
   padding: 0.3rem;
 }
 
+#starting-point-instruction {
+  padding-top: 1rem;
+}
+
 /* Map Section */
 
 #route-section {
