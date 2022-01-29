@@ -185,7 +185,8 @@ map.on("click", function (e) {
   }
 
   // if there are two markers in route enable the looped route check box
-  if (clickRoute.length > 1) {
+  if (clickRoute.length > 0) {
+    console.log("CALLED");
     document.getElementById("looped-route").disabled = false;
   }
 
@@ -197,14 +198,14 @@ map.on("click", function (e) {
     // document.getElementById("way-points").innerHTML = clickRoute.length;
     updateRoute(click);
 
-    // set the click as a geoJSON feature to add to clicks
+    // set the click as a geoJSON feature to add to markers
     let pt = turf.point([click[0], click[1]], {
       orderTime: Date.now(),
       key: Math.random(),
     });
 
     // if it's the first click
-    if (clickRoute.length === 1) {
+    if (clickRoute.length == 1) {
       // add layer to first click
       setStartMarker(click);
     } else {
