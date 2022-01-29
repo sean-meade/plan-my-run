@@ -33,17 +33,14 @@ async function weatherAPIRequest(latLon, weatherAPIkEY) {
       if (
         !weatherTime ||
         !weatherDay ||
-        (hour <= today.getHours() && day === today.getDate())
+        (hour <= today.getHours() && day == today.getDate())
       ) {
         alert(
           "Please choose a day and time either now or in the future",
           "warning",
           "weather-output"
         );
-      } else if (day === today.getDate() && hour >= 21) {
-        hour = 0;
-        day = day + 1;
-      }
+        }
 
       let relWeatherData = getRelevantWeatherData(
         weatherData,
@@ -114,7 +111,12 @@ function getDayHourMonth(weatherData, i) {
 function getRelevantWeatherData(weatherData, hour, day, month) {
   for (let i = 0; i < weatherData.list.length - 1; i++) {
     let [dayi, houri, monthi] = getDayHourMonth(weatherData, i);
-    let [dayip1, hourip1, monthip1] = getDayHourMonth(weatherData, i + 1);
+    let mostRecentWeatherHour = parseInt(weatherData.list[0].dt_txt.substring(10, 13));
+    let mostRecentWeatherDay = parseInt(weatherData.list[0].dt_txt.substring(8, 10))
+    if (hour <= mostRecentWeatherHour && hour >= mostRecentWeatherHour - 2 && mostRecentWeatherDay == day) {
+      return weatherData.list[0];
+    }
+    let hourip1 = getDayHourMonth(weatherData, i + 1)[1];
     if (month == monthi && day == dayi) {
       // if the i plus 1 entry is 00:00 then give the value of 24
       if (hourip1 == 0) {
@@ -125,7 +127,7 @@ function getRelevantWeatherData(weatherData, hour, day, month) {
         return weatherData.list[i];
       } else if (hour < hourip1 && hour >= houri) {
         // else if the hour is within a range
-        return weatherData.list[i];
+        return weatherData.list[i + 1];
       }
     }
   }
