@@ -33,7 +33,6 @@ The longer the run the more difficult it gets. You have to make sure you plan yo
   - [Features](#features)
     - [Implemented Features](#implemented-features)
     - [Future Features](#future-features)
-    - [Redundant features](#redundant-features)
   - [Changes applied since planning](#changes-applied-since-planning)
   - [Testing](#testing)
   - [Deployment](#deployment)
@@ -72,11 +71,13 @@ The main goal of this project is to provide an app that helps runners plan their
 - As a user, I am able to quickly understand how to navigate the site.
 - As a user, I am able to choose what location to start the run in.
 - As a user, I am able to change the location when I want.
-- As a user, I am able to choose the day and time for a run and with location recieve weather information
+- As a user, I am able to choose the day and time for a run and with location receive weather information
 - As a user, I am able to change the day and time and update the weather information.
-- As a user, I am able to use the mouse to map out a running route and recieve the distance of the route in return.
+- As a user, I am able to use the mouse to map out a running route and receive the distance of the route in return.
 - As a user, I am able to undo points of my route and the distance and map updates accordingly.
 - As a user, I am able to make my run a looped run (returns back to where I started) and the distance and map updates accordingly.
+- As a user, I am able to reset the map at any point and start fresh.
+- As a user, I am able to find information or a link to the creator of the site.
 
 
 **Applies to new site users:**
@@ -85,7 +86,7 @@ The main goal of this project is to provide an app that helps runners plan their
 
 **Applies to all returning users:**
 
-- As a user, I am able to 
+- As a user, I am able to understand any changes that are made and use the site with no hinderance.
 
 [Back to content](#contents)
 
@@ -101,6 +102,8 @@ The main goal of this project is to provide an app that helps runners plan their
 #### **Expectations**
 
 - Quick app load time
+- Easy to use "out of the box" with minimal explaination.
+
 
 [Back to content](#contents)
 
@@ -124,7 +127,10 @@ The main goal of this project is to provide an app that helps runners plan their
 
 Site moc-ups were designed using [figma](figma). The focus was on defining the basic layout structure of the app and identifying how the display would change on different screen sizes such as mobile, tablet and larger screens.
 
-You can view the wireframes created for this project in [site wireframes](/docs) folder.
+You can view the wireframes created for this project in [site wireframes](/docs) folder here is a list:
+
+- Mobile Wireframe: [Version 1](/docs/wireframes/Plan_My_Run_(Mobile).pdf)
+- Laptop Wireframe: [Version 1](/docs/wireframes/Plan_My_Run_(Desktop_Laptop).pdf)
 
   **Please note, as I was developing the project, I have identified some weaknesses in the UX and therefore made the required changes. The deployed site looks somewhat different in comparison to the wireframes. These changes will allow the user to have a better experience and allow easier navigation. The design theme of the features is a close match to the overall site to ensure continuation and flow.*
 
@@ -133,6 +139,24 @@ You can view the wireframes created for this project in [site wireframes](/docs)
 ---
 
 ## Information Architecture
+
+This is a one page application and as such the information architecture follows most important to least important information according to the intended user. The information is displayed in this order:
+
+1. The title text: this text explains simply what the site does and how it can help the user. This is the most important because it's important for a visitor to understand the purpose of the site on first visit.
+
+2. How to choose the starting point: The user has the choice of choosing the general location and then clicking the start point on the map or using there current location. This is second most important as it is the beginning point for finding a running route.
+
+3. The map: The map along with the text following it is the next most important because it gives the user the information to start building their route with clicks on a map.
+
+4. Functional buttons for the map: After clicking on the map the functional buttons allow more control over building a route. They can loop their route automatically as a lot of runners start and finish their route at the same point (but not all). The undo button allows the user to remove a click and keep the rest of their route intact. The reset route button allows the user to clear everything from the map and start again.
+
+5. The map output: Once the route is made and the user is happy with it they can view the distance of that route and how many waypoints they have left to add to they route if need be.
+
+6. Weather input: The weather is a nice to have when planning a run and so comes close to the end. The user can input the day and time of their run (limited to four days).
+
+7. Weather output: Once the day and time of a run is chosen the user can click Get Weather Info button and receive the relevant weather information in return.
+
+8. Creator information: Lastly if the user is curious as to who created it there is a link to his GitHub account at the bottom of the page in the footer.
 
 
 [Back to content](#contents)
@@ -152,6 +176,8 @@ You can view the wireframes created for this project in [site wireframes](/docs)
 - [jQuery](https://jquery.com/)
 - [Google fonts](https://fonts.google.com/)
 - [Font-Awesome](https://fontawesome.com/icons?d=gallery)
+- [Turf](https://unpkg.com/browse/@turf/turf@6.3.0/)
+- [Bootstrap](https://getbootstrap.com/)
 
 ### APIs
 The weather API was used through [rapidapi.com](https://rapidapi.com/)
@@ -180,6 +206,8 @@ The weather API was used through [rapidapi.com](https://rapidapi.com/)
 - The site has **responsive design** when viewed on a mobile, tablet, and desktop.
 - **Easy navigation** to external sites, such as social media accounts.
 - The user is given feedback when they interact with the website (i.e. login to the website, add new gift, commit to buying a gift etc).
+
+
 
 [Back to content](#contents)
 
