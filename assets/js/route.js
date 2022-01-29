@@ -8,10 +8,10 @@ let placeholder = turf.featureCollection([]);
 // a geoJSON feature collection to track clicks to add markers to map
 let markers = turf.featureCollection([]);
 
-// A list to track clicks
+// A list to track clicks in the form of [long, lat] where long and lat are are floats with up 6 decimal places
 let clickRoute = [];
 
-// Create search field for location (i.e. geocoder)
+// Create search field for choosing a location for the map to go to (i.e. geocoder)
 const geocoder = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   types: "country,region,place,postcode,locality,neighborhood,address,poi",
@@ -22,7 +22,7 @@ const map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/mapbox/streets-v11",
   center: [-7.266155, 53.75014],
-  zoom: 9,
+  zoom: 5,
 }); // map variable
 
 // Add geocoder to div
@@ -34,7 +34,7 @@ geocoder.on("result", (e) => {
 });
 
 /**
- * function that updates the route-points layer to add maker to map
+ * function that updates the route-points layer to add a maker to map
  * 
  * @param {turf featureCollection} markers Takes one or more Feature|Features and creates a FeatureCollection
  */
@@ -42,9 +42,11 @@ function addMarker(markers) {
   map.getSource("route-points").setData(markers);
 }
 
-// if the first and last value is the same in clickRoute and looped route in unchecked remove the looped route
-// else loop the route by adding first maker value to the end of clickRoute and remove if unticked
+
 /**
+ * function thats called when looped route checkbox is clicked 
+ * if the first and last value is the same in clickRoute and looped route in unchecked remove the looped route
+ * else loop the route by adding first maker value to the end of clickRoute
  * 
  */
 function loopedRoute() {
@@ -61,29 +63,30 @@ function loopedRoute() {
   createRoute(clickRoute);
 }
 
-
 /**
- * create a route with an array of lat, long values
- * route = [[long1, lat1], [long2, lat2], ... [longn, latn]]
+ * function that creates a route with an array of lat, long values
+ * clickRoute = [[long1, lat1], [long2, lat2], ... [longn, latn]]
  * where n is up to 24
  * and latn and longn are floats with up 6 decimal places (e.g. [-7.266155, 53.750145])
  * 
- * @param {Array} route an array containing arrays with two entries latitude and longitude
+ * @param {Array} clickRoute an array containing arrays with two entries latitude and longitude
  */
-async function createRoute(route) {
+async function createRoute(clickRoute) {
   // create url to make request with route and API key
   let url =
     "https://api.mapbox.com/directions/v5/mapbox/walking/" +
-    route.join(";") +
+    clickRoute.join(";") +
     "?geometries=geojson&access_token=" +
     mapboxgl.accessToken;
 
-  // Create GET request to Mapbox directions API and recieve data back to get route routeGeoJSON and distance to update map with
+  // Call a GET request to Mapbox directions API and receive data back
+  // get the route coordinates and create a GeoJSON feature called routeGeoJSON to hold the route
+  // get distance of route from the data 
+  // display route on the map and distance to html
   $.ajax({
     method: "GET",
     url: url,
   }).done(function (data) {
-    // Create a GeoJSON feature collection containing the route
     let route = data.routes[0].geometry.coordinates;
     let routeGeoJSON = {
       type: "Feature",
@@ -93,11 +96,9 @@ async function createRoute(route) {
         coordinates: route,
       },
     };
-    // show that route on map using routeGeoJSON
     map.getSource("route").setData(routeGeoJSON);
-    // Grab distance of the route from data
+
     let distance = data.routes[0].distance / 1000;
-    // Update distance in HTML
     document.getElementById("distance").innerHTML = distance.toFixed(2) + "km";
   }).fail(function () {
     // throw error if request fails
@@ -105,11 +106,14 @@ async function createRoute(route) {
   });
 }
 
-// Load the map on when the page has loaded
 /**
+ * Function that loads the map when the page is loading
+ * Adds layers for starting point, markers (each click after starting point)
+ * and the route to the map
  * 
  */
 map.on("load", function () {
+  // Layer for starting point
   map.addLayer({
     id: "starting-point",
     type: "circle",
@@ -125,7 +129,7 @@ map.on("load", function () {
     },
   });
 
-  // Add layer that will be used to mark clicks as dots
+  // Layer for markers
   map.addLayer({
     id: "route-points",
     type: "symbol",
@@ -140,15 +144,13 @@ map.on("load", function () {
     },
   });
 
-  // create a source to add to for the route but
-  // initially set to nothing
+  // The data that the route is drawn with
   map.addSource("route", {
     type: "geojson",
     data: placeholder,
   });
 
-  // Add a layer to the map to represent the route
-  // giving 'route' as the source data
+  // Layer for route line
   map.addLayer(
     {
       id: "routeline-active",
@@ -168,6 +170,13 @@ map.on("load", function () {
 });
 
 // When map is clicked collect lat and lng and update map accordingly
+/**
+ * Function that is called when the map is clicked.
+ * 
+ * 
+ * @param {click Interaction} e click Interaction fired when a pointing device is pressed and released at the same point on the map
+ *                              link to example: https://docs.mapbox.com/mapbox-gl-js/api/map/#map.event:click
+ */
 map.on("click", function (e) {
   // enable undo button on map when first marker is set
   document.getElementById("undo").disabled = false;
@@ -179,23 +188,18 @@ map.on("click", function (e) {
     parseFloat(coords.lat.toFixed(6)),
   ];
 
-
   if (clickRoute[0] == clickRoute[clickRoute.length - 1]) {
     document.getElementById("looped-route").checked = false;
   }
 
   // if there are two markers in route enable the looped route check box
   if (clickRoute.length > 0) {
-    console.log("CALLED");
     document.getElementById("looped-route").disabled = false;
   }
 
   // if the limit of 24 clicks hasn't been met
   if (clickRoute.length < 24) {
-    // // Add click to route
-    // clickRoute.push(click);
-    // // update number of clicks in html
-    // document.getElementById("way-points").innerHTML = clickRoute.length;
+    // Add click to route
     updateRoute(click);
 
     // set the click as a geoJSON feature to add to markers
@@ -204,81 +208,80 @@ map.on("click", function (e) {
       key: Math.random(),
     });
 
-    // if it's the first click
+    // if it's the first click add layer to first click else add marker and create route
     if (clickRoute.length == 1) {
-      // add layer to first click
       setStartMarker(click);
     } else {
-      // click added to clicks
       markers.features.push(pt);
-      // add click to route-points layer
       addMarker(markers);
-      // create route of lines
       createRoute(clickRoute);
     }
+
   } else {
-    // throw error saying reached limmit of clicks
+    // throw error saying reached limit of clicks
     alert("Reached limit of way points", "warning", "map-alerts");
   }
 }); // map on click
 
+/**
+ * A function that when a click is made on map updates clickRoute with the click and updates number of markers left
+ * 
+ * @param {Array} click in the form of [long, lat] where long and lat are are floats with up 6 decimal places
+ */
 function updateRoute(click) {
-  // Add click to route
   clickRoute.push(click);
-  // update number of clicks in html
   document.getElementById("way-points").innerHTML = clickRoute.length;
 }
 
-// Function called by button click to clear everything and clicking route again
+/**
+ * Function called when Reset Route button is clicked which:
+ * 
+ * Unchecks and disables looped route checkbox
+ * Empties clickRoute and markers
+ * Removes starting point, route and markers from the map
+ * updates the distance and way points
+ * disables the undo button
+ * 
+ */
 function resetRoute() {
   document.getElementById("looped-route").checked = false;
   document.getElementById("looped-route").disabled = true;
-  // Empty clickRoute and markers
+
   clickRoute = [];
   markers = turf.featureCollection([]);
-  
-  // Empty distance output
-  document.getElementById("distance").innerHTML = "0";
-  // empyty layer for starting point marker with placeholder
+
   map.getSource("starting-point").setData(placeholder);
-  // empyty layer for route with empty markers
   map.getSource("route").setData(markers);
-  // empyty layer for markers with markers
   addMarker(markers);
-  // disable undo button
-  document.getElementById("undo").disabled = true;
-  // update number of clicks left
+
+  document.getElementById("distance").innerHTML = "0";
   document.getElementById("way-points").innerHTML = "0";
+  document.getElementById("undo").disabled = true;
+    
 }
 
-// Function called by button click to remove click from route and update map
+/**
+ * Function called by clicking Undo button
+ * 
+ * removes a marker and creates route
+ * if only starting point remains resets route
+ * Updates looped route checkbox accordingly
+ * 
+ */
 function undoClick() {
-  // if more the starting point in clickRoute
-  if (document.getElementById("looped-route").checked == true) {
-    document.getElementById("looped-route").checked = false;
-  }
 
   if (clickRoute.length > 1) {
-    // if there is 2 markers
     if (clickRoute.length == 2) {
-      // remove marker
       clickRoute.pop();
-      // update route on map and distance dispalyed on html
-      map.getSource("route").setData(markers);
+      map.getSource("route").setData(placeholder);
       document.getElementById("distance").innerHTML = "0";
       document.getElementById("looped-route").disabled = true;
     } else {
-      // otherwise remove marker and update route
       clickRoute.pop();
       createRoute(clickRoute);
-      
     }
-    // remove last click from markers
     markers.features.pop();
-    // update markers on map
     addMarker(markers);
-
-    // update number of markers displayed in html
     document.getElementById("way-points").innerHTML = clickRoute.length;
   } else {
     resetRoute();
@@ -286,17 +289,37 @@ function undoClick() {
 
   if (clickRoute[0] == clickRoute[clickRoute.length - 1] && clickRoute.length > 1) {
     document.getElementById("looped-route").checked = true;
+  } else {
+    document.getElementById("looped-route").checked = false;
   }
 }
 
-// If current location can't be found send alert
+/**
+ * function called if useCurrentLocAsStart function fails to receive current location
+ * creates alert informing user of error
+ */
 function errorCurrentLocation() {
   alert("Couldn't find your current location", "warning", "noCurrentLocationAlertForMap");
 }
 
-function useCurrentLocAsStart() {
+/**
+ * Creates starting marker using current location if useCurrentLocAsStart is successful
+ * 
+ * @param {Array} start in the form of [long, lat] where long and lat are are floats with up 6 decimal places
+ */
+ function createStartMarker(start) {
+  map
+    .getSource("starting-point")
+    .setData(turf.featureCollection([turf.point(start)]));
+}
 
-  document.getElementById("looped-route").checked == true;
+/**
+ * Function called when Start Where I am button is clicked
+ * Resets the route first and then sets starting marker if successful else 
+ * serves users with alert through errorCurrentLocation
+ */
+ function useCurrentLocAsStart() {
+
   resetRoute();
   navigator.geolocation.getCurrentPosition(
     setStartMarker,
@@ -307,13 +330,16 @@ function useCurrentLocAsStart() {
   );
 }
 
-function createStartMarker(start) {
-  map
-    .getSource("starting-point")
-    .setData(turf.featureCollection([turf.point(start)]));
-}
-
+/**
+ * A function that checks to see if the input is an Array or a GeolocationPosition and sets the starting marker accordingly
+ * if start point set by current location it'll set the center of the map to current location
+ * 
+ * @param {Array} click in the form of [long, lat] where long and lat are are floats with up 6 decimal places
+ * @param {GeolocationPosition} click containing data from navigator.geolocation.getCurrentPosition
+ */
 function setStartMarker(click) {
+  
+  console.log(click);
   if (click.coords == undefined) {
     createStartMarker(click);
   } else {
