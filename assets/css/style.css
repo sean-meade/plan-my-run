@@ -259,7 +259,7 @@ footer a {
   }
 }
 
-@media only screen and (min-width: 520px) {
+@media only screen and (max-width: 520px) {
   #cover-text {
     width: 60%;
     left: 20%;
@@ -272,7 +272,7 @@ footer a {
   }
 } */
 
-@media only screen and (min-width: 660px) {
+@media only screen and (max-width: 660px) {
   .output {
     justify-content: center;
   }
@@ -280,10 +280,24 @@ footer a {
   .output div {
     margin: 0 1.5rem;
   }
+
+  .loading-text {
+    left: 40%;
+  }
+
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (max-width: 700px) {
   #cover-text {
+    top: 50%;
+    width: 60%;
+    left: 20%;
+  }
+}
+
+@media only screen and (max-width: 830px) {
+  #cover-text {
+    top: 30%;
     width: 40%;
     left: 30%;
   }
