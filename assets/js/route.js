@@ -11,19 +11,19 @@ let clicks = turf.featureCollection([]);
 // A list to track clicks
 let clickRoute = [];
 
-// Initialize a map with the center being a view of Ireland
-const map = new mapboxgl.Map({
-  container: "map",
-  style: "mapbox://styles/mapbox/streets-v11",
-  center: [-7.266155, 53.75014],
-  zoom: 5,
-}); // map variable
-
 // Create search field for location (i.e. geocoder)
 const geocoder = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   types: "country,region,place,postcode,locality,neighborhood,address,poi",
 });
+
+// Initialize a map with the center being a view of Ireland
+const map = new mapboxgl.Map({
+  container: "map",
+  style: "mapbox://styles/mapbox/streets-v11",
+  center: [-7.266155, 53.75014],
+  zoom: 9,
+}); // map variable
 
 // Add geocoder to div
 geocoder.addTo("#geocoder");
@@ -32,41 +32,6 @@ geocoder.addTo("#geocoder");
 geocoder.on("result", (e) => {
   map.setCenter(e.result.center);
 });
-
-// set center of map to current location if success
-/**
- * 
- * @param {*} e 
- * @returns 
- */
-function successCurrentLocation(e) {
-  map.setCenter([e.coords.longitude, e.coords.latitude]);
-  return [e.coords.latitude, e.coords.longitude];
-}
-
-// If current location can't be found send alert
-/**
- * 
- * @param {*} e 
- */
-function errorCurrentLocation(e) {
-  alert("Couldn't find your current location", "warning", "noCurrentLocationAlert");
-}
-
-// Function called when button is pressed for using current location
-/**
- * 
- * @param {*} e 
- */
-function useCurrentLocation(e) {
-  navigator.geolocation.getCurrentPosition(
-    successCurrentLocation,
-    errorCurrentLocation,
-    {
-      enableHighAccuracy: true,
-    }
-  );
-}
 
 // function that updates the route-points layer to add maker to map
 /**
@@ -264,7 +229,8 @@ function updateRoute(click) {
 
 // Function called by button click to clear everything and clicking route again
 function resetRoute() {
-
+  document.getElementById("looped-route").checked = false;
+  document.getElementById("looped-route").disabled = true;
   // Empty clickRoute and clicks
   clickRoute = [];
   clicks = turf.featureCollection([]);
@@ -322,7 +288,7 @@ function undoClick() {
 }
 
 // If current location can't be found send alert
-function errorCurrentLocation2(e) {
+function errorCurrentLocation() {
   alert("Couldn't find your current location", "warning", "noCurrentLocationAlertForMap");
 }
 
@@ -332,7 +298,7 @@ function useCurrentLocAsStart() {
   resetRoute();
   navigator.geolocation.getCurrentPosition(
     setStartMarker,
-    errorCurrentLocation2,
+    errorCurrentLocation,
     {
       enableHighAccuracy: true,
     }
