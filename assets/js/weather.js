@@ -92,7 +92,7 @@ function getRelevantWeatherData(weatherData, hour, day, month) {
             <div>${relWeatherData.main.temp_max} &deg;C</div>
             <div>${relWeatherData.main.temp_min} &deg;C</div>
           </div>
-          <div class="weather-item"><span>|</span><img src="assets/images/raindrop-icon.png"/> ${
+          <div class="weather-item"><span>|</span><img src="assets/images/raindrop-icon.webp"/> ${
             relWeatherData.pop * 100
           } %</div>
           <div class="weather-item"><span>|</span> ${
