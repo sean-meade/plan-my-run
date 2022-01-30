@@ -1,22 +1,15 @@
-// https://www.udemy.com/course/50-projects-50-days/
+// blurring function is adapted from: https://www.udemy.com/course/50-projects-50-days/
 
-const loadText = document.querySelector('.loading-text');
-const bg = document.querySelector('.bg');
-
+// Set variables for blur function
+let loadText = document.querySelector('.loading-text');
+let bg = document.querySelector('.bg');
 let load = 0;
-
 let int = setInterval(blurring, 30);
 
-
-// https://www.designcise.com/web/tutorial/how-to-force-scroll-to-the-top-of-the-page-on-page-reload-using-javascript
-if (history.scrollRestoration) {
-  history.scrollRestoration = 'manual';
-} else {
-  window.onbeforeunload = function () {
-      window.scrollTo(0, 0);
-  }
-}
-
+/**
+ * A function that blurs the background image and increments the loading percentage
+ * the on completion sets them both to display none
+ */
 function blurring() {
   load++;
 
@@ -32,6 +25,16 @@ function blurring() {
   bg.style.filter = `blur(${Math.round(load/3)}px)`;
 }
 
+// https://www.designcise.com/web/tutorial/how-to-force-scroll-to-the-top-of-the-page-on-page-reload-using-javascript
+// if else statement that on reload of the page the page is scrolled to the top
+// this is so the loading screen is in full view
+if (history.scrollRestoration) {
+  history.scrollRestoration = 'manual';
+} else {
+  window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+  }
+}
 
 // // delete these and uncomment above before final submit
 // loadText.style.display = "none";

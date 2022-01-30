@@ -207,24 +207,88 @@ This is a one page application and as such the information architecture follows 
 - **Easy navigation** to external sites, such as social media accounts.
 - The user is given feedback when they interact with the website (i.e. login to the website, add new gift, commit to buying a gift etc).
 
-#### Functional
+### Functional Features
+
+#### __Loading Screen__
+The loading screen allows time for the map to load properly before the user clicks on it. 
+
+![Loading Screen](docs/images/loading-screen.png "Loading Screen")
+
+#### __Search Location Field__
+The search location field allows the user to move the map to the general location of their run.
+
 ![Search Location Field](docs/images/search-location.png "Search Location Field")
+
+#### __Start Where I am Button__
+This button allows the user to set their current location as the starting point of their route.
+
 ![Start Where I am Button](docs/images/button-start-where-i-am.png "Start Where I am Button")
+
+#### __Map__
+The map allows the user to pan, zoom and angle the current area. By clicking on the route they can set the starting location (if not already set with Start where I am button) seen on the map as a white circle with a blue border. Each subsequent click is marked as a waypoint with a black dot and the route between these points (including the starting point) can be seen by the blue line.
+
 ![Map](docs/images/map.png "Map")
+
+#### __Map Control Buttons__
+The map controls allows the user more control over setting their route on the map. The first being a checkbox that allows the user to set the next waypoint at the same location as the starting point (it's possible to have multiple loops in the same route as long as the number of waypoints is 24 or below). Next the Undo button allows the user to remove the last waypoint in the route. Finally the Reset Route button allows the user to completely remove everything relating to the current route build from the map and start over.
+
 ![Map Control Buttons](docs/images/map-buttons.png "Map Control Buttons")
+
+#### __Map Output__
+The map output shows the the distance of the current route and the number of waypoints left to use (note: the looped waypoint counts as a waypoint). Both update upon each click of map, undo, or reset.
+
 ![Map Output](docs/images/map-output.png "Map Output")
-![Weather Day & Time](docs/images/weather-input.png "Weather Day & Time")
+
+#### __Weather Day & Time Input__
+These inputs allow the user to pick the day and time of their run to request the relevant weather information.
+
+![Weather Day & Time Input](docs/images/weather-input.png "Weather Day & Time Input")
+
+#### __Get Weather Button__
+This button allows the user to then send the request for the weather information for said day and time.
+
 ![Get Weather Button](docs/images/button-get-weather.png "Get Weather Button")
+
+#### __Weather Information Display__
+The weather output then provides the description of the weather in the form of an iamge (hovering over the image will give the description in text), the median, max and min temperature, the chance of rain, the wind speed, and the wind direction.
+
 ![Weather Information Display](docs/images/weather-output.png "Weather Information Display")
+
+#### __Link to My Github__
+This text provides a link to the Github account of the creator of the site.
+
 ![Link to My Github](docs/images/link-to-github.png "Link to My Github")
 
-#### Alerts
+### Alert Features for
 
-![Alert for No Location](docs/images/alert-for-no-location.png "Alert for No Location")
+#### __No Current Location__
+An alert telling the user that their current location could not be found when trying to use it for the staring point with the 'Start where I am' button.
+
+![Alert for No Current Location](docs/images/alert-for-no-location.png "Alert for No Current Location")
+
+#### __No Route Info__
+A warning telling the user that the request for the route information isn't working and to contact the creator of the site.
+
 ![Alert for No Route Info](docs/images/alert-for-no-route-info.png "Alert for  No Route Info")
-![Alert for Waypoint Limit](docs/images/alert-for-reached-limit-waypoints.png "Alert for  Waypoint Limit")
+
+#### __Waypoint Limit Reached__
+An alert that tels the user that they have reached the limit of waypoints used on the map.
+
+![Alert for Waypoint Limit Reached](docs/images/alert-for-reached-limit-waypoints.png "Alert for  Waypoint Limit Reached")
+
+#### __Choose Time to get Weather__
+An alert that asks the user to choose a time in the future when trying to request weather information. This is either the user has chosen a time in the past on the current day or they have not chosen any time or day.
+
 ![Alert for Choose Time to get Weather](docs/images/alert-for-choose-time.png "Alert for  Choose Time to get Weather")
+
+#### __No Starting Point Selected__
+An alert that reminds the user to set a starting point where they want the weather information for.
+
 ![Alert for No Starting Point Selected](docs/images/alert-for-no-starting-point.png "Alert for  No Starting Point Selected")
+
+#### __No Weather Information Returned__
+An alert that informs the user that the request for the weather information has failed.
+
 ![Alert for No Weather Information Returned](docs/images/alert-for-no-weather-info.png "Alert for No Weather Information Returned")
 
 
