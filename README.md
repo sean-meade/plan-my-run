@@ -102,7 +102,7 @@ The main goal of this project is to provide an app that helps runners plan their
 #### **Expectations**
 
 - Quick app load time
-- Easy to use "out of the box" with minimal explaination.
+- Easy to use "out of the box" with minimal explanation.
 
 
 [Back to content](#contents)
@@ -180,7 +180,6 @@ This is a one page application and as such the information architecture follows 
 - [Bootstrap](https://getbootstrap.com/)
 
 ### APIs
-The weather API was used through [rapidapi.com](https://rapidapi.com/)
 
 - [Weather API](https://www.weatherapi.com/)
 - [Mapbox API](https://docs.mapbox.com/api/overview/)
@@ -193,6 +192,8 @@ The weather API was used through [rapidapi.com](https://rapidapi.com/)
 - [Color editor](https://coolors.co/)
 - [Favicons](https://fontawesome.com/)
 - [Pixabay](https://pixabay.com/)
+- [LunaPic](https://www4.lunapic.com/editor/)
+- [Iconfinder](https://www.iconfinder.com/icons/316043/raindrop_icon)
 
 [Back to content](#contents)
 
@@ -314,10 +315,11 @@ git clone link-to-repo
 ### Images
 
 * 
+* Rain drop icon from weather is from [Iconfinder](https://www.iconfinder.com/)
 
 ### Image editing
 
-* 
+* All image editing was done with [LunaPic](https://www4.lunapic.com/editor/)
 
 ### Code ideas
 

@@ -29,6 +29,7 @@ geocoder.addTo("#geocoder");
 
 // If location searched update map center
 geocoder.on("result", (e) => {
+  resetRoute();
   map.setCenter(e.result.center);
 });
 
@@ -103,7 +104,7 @@ function errorCurrentLocation() {
   alert(
     "Couldn't find your current location",
     "warning",
-    "noCurrentLocationAlertForMap"
+    "noCurrentLocationAlert"
   );
 }
 
@@ -264,7 +265,7 @@ document.getElementById("reset-route").onclick = function () {
 };
 
 /**
- * function that creates a route with an array of lat, long values
+ * function that creates a route with an array of lat, long values by making a request to the mapbox directions api
  * clickRoute = [[long1, lat1], [long2, lat2], ... [longn, latn]]
  * where n is up to 24
  * and latn and longn are floats with up 6 decimal places (e.g. [-7.266155, 53.750145])
@@ -306,7 +307,7 @@ async function createRoute(clickRoute) {
     .fail(function () {
       // throw error if request fails
       alert(
-        "Request for route information failed please contact creator or site",
+        "Request for route information failed please contact creator of site",
         "danger",
         "map-alerts"
       );
