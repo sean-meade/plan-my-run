@@ -4,7 +4,7 @@
 let loadText = document.querySelector('.loading-text');
 let bg = document.querySelector('.bg');
 let load = 0;
-let int = setInterval(blurring, 5);
+let int = setInterval(blurring, 15);
 
 /**
  * A function that blurs the background image and increments the loading percentage
