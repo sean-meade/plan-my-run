@@ -201,13 +201,31 @@ This is a one page application and as such the information architecture follows 
 
 ## Features
 
-
 ### Implemented Features
 
 - The site has **responsive design** when viewed on a mobile, tablet, and desktop.
 - **Easy navigation** to external sites, such as social media accounts.
 - The user is given feedback when they interact with the website (i.e. login to the website, add new gift, commit to buying a gift etc).
 
+#### Functional
+![Search Location Field](docs/images/search-location.png "Search Location Field")
+![Start Where I am Button](docs/images/button-start-where-i-am.png "Start Where I am Button")
+![Map](docs/images/map.png "Map")
+![Map Control Buttons](docs/images/map-buttons.png "Map Control Buttons")
+![Map Output](docs/images/map-output.png "Map Output")
+![Weather Day & Time](docs/images/weather-input.png "Weather Day & Time")
+![Get Weather Button](docs/images/button-get-weather.png "Get Weather Button")
+![Weather Information Display](docs/images/weather-output.png "Weather Information Display")
+![Link to My Github](docs/images/link-to-github.png "Link to My Github")
+
+#### Alerts
+
+![Alert for No Location](docs/images/alert-for-no-location.png "Alert for No Location")
+![Alert for No Route Info](docs/images/alert-for-no-route-info.png "Alert for  No Route Info")
+![Alert for Waypoint Limit](docs/images/alert-for-reached-limit-waypoints.png "Alert for  Waypoint Limit")
+![Alert for Choose Time to get Weather](docs/images/alert-for-choose-time.png "Alert for  Choose Time to get Weather")
+![Alert for No Starting Point Selected](docs/images/alert-for-no-starting-point.png "Alert for  No Starting Point Selected")
+![Alert for No Weather Information Returned](docs/images/alert-for-no-weather-info.png "Alert for No Weather Information Returned")
 
 
 [Back to content](#contents)
