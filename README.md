@@ -4,7 +4,7 @@
 
 The longer the run the more difficult it gets. You have to make sure you plan your route so you run long enough distances to continue to progress. You can run the same shorter distance multiple times to make it up but speaking from experience will drive you crazy. It is important to know how far you must run before going out.
 
-![Site display on different screens](assets/images/amiresponsive.png "Image showing website on multiple platforms")
+![Site display on different screens](docs/images/amiresponsive.png "Image showing website on multiple platforms")
 
 ---
 
@@ -117,7 +117,7 @@ The main goal of this project is to provide an app that helps runners plan their
 
 #### **Colours**
 
-![Colour palette](assets/images/colour-pallette.png "Image of the Colour Palette used for this website")
+![Colour palette](docs/images/colour-pallette.png "Image of the Colour Palette used for this website")
 
 [Back to content](#contents)
 

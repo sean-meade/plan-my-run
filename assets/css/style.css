@@ -19,7 +19,7 @@ body {
 /* Loading screen */
 
 .bg {
-  background: url('../images/the-road-is-long.png') no-repeat center center/cover;
+  background: url('../images/the-road-is-long-min.png') no-repeat center center/cover;
   position: absolute;
   top: -30px;
   left: -30px;
@@ -94,7 +94,7 @@ header a:hover {
 #hero-image {
   min-height: 28rem;
   width: 100%;
-  background: url("../images/the-road-is-long.png") no-repeat center center;
+  background: url("../images/the-road-is-long-min.png") no-repeat center center;
   background-size: cover;
 }
 
