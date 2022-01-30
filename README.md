@@ -132,7 +132,7 @@ You can view the wireframes created for this project in [site wireframes](/docs)
 - Mobile Wireframe: [Version 1](/docs/wireframes/Plan_My_Run_(Mobile).pdf)
 - Laptop Wireframe: [Version 1](/docs/wireframes/Plan_My_Run_(Desktop_Laptop).pdf)
 
-  **Please note, as I was developing the project, I have identified some weaknesses in the UX and therefore made the required changes. The deployed site looks somewhat different in comparison to the wireframes. These changes will allow the user to have a better experience and allow easier navigation. The design theme of the features is a close match to the overall site to ensure continuation and flow. Please check the [Changes applied since planning](#changes-applied-since-planning) section for explanation.*
+  **Please note, as I was developing the project, I have identified some weaknesses in the UX and therefore made the required changes. The deployed site looks somewhat different in comparison to the wireframes. These changes will allow the user to have a better experience and allow easier navigation. The design theme of the features is a close match to the overall site to ensure continuation and flow. Please check the [Changes applied since planning(#changes-applied-since-planning) section for explanation.*
 
 [Back to content](#contents)
 
@@ -298,7 +298,21 @@ An alert that informs the user that the request for the weather information has 
 
 ## Changes applied since planning
 
+All changes refer to what is different from the [Wireframes](docs/wireframes) and the [Deployed Site](https://sean-meade.github.io/plan-my-run/)
 
+The blue band across the top of the wire frame with the title 'PLAN MY RUN' was removed because it did not fit in with the open flow of the website. The title text was instead moved the hero image and that was made the header section.
+
+The search button for location was made redundant because clicking on the options in the drop-down list provides the same function.
+
+The first 'Use Current Location' was removed as the same function can be achieved with the second 'Use Current Location' button (now named 'Start where I am') and the undo button. Because of this the 'Start where I am' button has been removed from further down and placed here instead.
+
+The Plan Your Route section has been moved above the weather information due to the Information Architecture. The map has been placed at the top of this section as it is the natural next step after choosing starting location.
+
+The 'Undo' button has been placed beside the 'Looped Route' (now a checkbox for a cleaner look) due to the limitations of the developer. A 'Reset Route' button has been added as user feedback dictated it a very useful feature.
+
+Weather information has two changes. It is now below the Plan Your Route section and the button is now a simple 'Get Weather Info'.
+
+Text has also been provided to inform the user along with alerts for errors.
 
 ---
 
