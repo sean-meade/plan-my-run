@@ -132,7 +132,7 @@ You can view the wireframes created for this project in [site wireframes](/docs)
 - Mobile Wireframe: [Version 1](/docs/wireframes/Plan_My_Run_(Mobile).pdf)
 - Laptop Wireframe: [Version 1](/docs/wireframes/Plan_My_Run_(Desktop_Laptop).pdf)
 
-  **Please note, as I was developing the project, I have identified some weaknesses in the UX and therefore made the required changes. The deployed site looks somewhat different in comparison to the wireframes. These changes will allow the user to have a better experience and allow easier navigation. The design theme of the features is a close match to the overall site to ensure continuation and flow.*
+  **Please note, as I was developing the project, I have identified some weaknesses in the UX and therefore made the required changes. The deployed site looks somewhat different in comparison to the wireframes. These changes will allow the user to have a better experience and allow easier navigation. The design theme of the features is a close match to the overall site to ensure continuation and flow. Please check the [Changes applied since planning](#changes-applied-since-planning) section for explanation.*
 
 [Back to content](#contents)
 
@@ -298,6 +298,8 @@ An alert that informs the user that the request for the weather information has 
 
 ## Changes applied since planning
 
+
+
 ---
 
 ## Testing
@@ -402,10 +404,11 @@ git clone link-to-repo
 ### Image editing
 
 * All image editing was done with [LunaPic](https://www4.lunapic.com/editor/)
+* Darkened the hero image with [Pinetools](https://pinetools.com/darken-image)
 
 ### Code ideas
 
-* 
+* Loading screen adapted from Section 6 of the [50 Projects In 50 Days](https://www.udemy.com/course/50-projects-50-days/) course on Udemy.com by Brad Traversy 
 
 [Back to content](#contents)
 
