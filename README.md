@@ -417,8 +417,10 @@ git clone link-to-repo
 
 ### Image editing
 
-* All image editing was done with [LunaPic](https://www4.lunapic.com/editor/)
+* Image editing was done with [LunaPic](https://www4.lunapic.com/editor/)
 * Darkened the hero image with [Pinetools](https://pinetools.com/darken-image)
+* Converted all images to webp with [Convertio](https://convertio.co/)
+
 
 ### Code ideas
 
