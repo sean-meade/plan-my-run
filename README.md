@@ -318,60 +318,126 @@ Text has also been provided to inform the user along with alerts for errors.
 
 ## Testing
 
-## Functional Testing
+### User Stories Testing
+- As a user, I am able to quickly understand how to navigate the site.
+	- The website flows from top to bottom with the steps clearly layed out.
+	- The buttons on the site inform the user of their purpose in a clear way.
 
-TC001 
+- As a user, I am able to choose what location to start the run in.
+	- The user is presented with way of choosing the area and clicking of the map or using the 'Start where I am' button.
 
-**Description**
+- As a user, I am able to change the location when I want.
+	- Using the find location search field will take the user to the area they want.
+	- The user can click and drag the map to the location of their choice.
 
-Test something.
+- As a user, I am able to choose the day and time for a run and with location receive weather information
+	- With a starting point selected, and a day and time (in the future) chosen and by clicking the 'Get Weather Info' button can get the relevant weather information.
 
-**Steps**
+- As a user, I am able to change the day and time and update the weather information.
+	- At any time time the user can slecet a new day and time (again in the future) and by clicking the 'Get Weather Info' button can get the relevant weather information.
 
-- Navigate to https://website
-- 
+- As a user, I am able to use the mouse to map out a running route and receive the distance of the route in return.
+	- The user can click on the map to create waypoints to map out a route. The distance is then updated automatically.
 
-**Expected**
+- As a user, I am able to undo points of my route and the distance and map updates accordingly.
+	- The 'Reset Route' and 'Undo' buttons allow the user to clear the route completely or undo their last choice of way point. When used the distance automatically updates.
 
-This happened
+- As a user, I am able to make my run a looped run (returns back to where I started) and the distance and map updates accordingly.
+	- By clicking the looped route checkbox (when enabled) it will bring the route back to the starting point. The distance and waypoints update automatically.
 
-**Actual**
+- As a user, I am able to reset the map at any point and start fresh.
+	- The 'Reset Route' button allows the user to clear the route completely and the distance and number of waypoints goes to zero. The user can then start making a route from the beginning again.
 
-This happened 
+- As a user, I am able to find information or a link to the creator of the site.
+	- All information is plain to see including any alerts activated by the user. A link to the creators Github is in the Footer.
 
-![TC001](img-of-test)
+### Manual Testing 
+* Browser Compatability
 
-<hr>
+Browser | Outcome | Pass/Fail  
+---|---|---
+Google Chrome | No appearance, responsiveness nor functionality issues.| Pass
+Safari | No appearance, responsiveness nor functionality issues. | Pass
+Mozilla Firefox | No responsiveness nor functionality issues.| Pass
+Microsoft Edge | No appearance, responsiveness nor functionality issues. | Pass
 
-TC002
+* Device compatibility (responsiveness)
+
+Device | Outcome | Pass/Fail
+--- | --- | ---
+Mobile | No appearance, responsiveness nor functionality issues. | Pass
+Laptop| No appearance, responsiveness nor functionality issues. | Pass
+Mac | No appearance, responsiveness nor functionality issues. | Pass
+iPad | No appearance, responsiveness nor functionality issues. | Pass
+iPhone XR | No appearance, responsiveness nor functionality issues. | Pass
+iPhone SE| No appearance, responsiveness nor functionality issues. | Pass
 
 
-## Validator Testing
+### Code Validation
 
-### CSS
+- [W3C CSS Validator](https://jigsaw.w3.org/css-validator) found no errors or warnings in my CSS.
 
-Base Css
+- [Html Validator](https://validator.w3.org/nu/) found no errors or warnings in my HTML.
 
-![Base CSS](docs/testing/base_css.JPG)
+- [JSHint](https://jshint.com/) found the following but an explaination comes with each:
+	-  
 
-### JavaScript
+Code | Page | Score  
+--- | --- | --- 
+CSS | Site Wide | screen grab of tests
+HTML | Home Page | 
+JavaScript| route.js | 
+JavaScript| live-alert.js | 
+JavaScript| loading-screen.js | 
+JavaScript| weather-input.js | 
+JavaScript| weather.js | 
 
-Base JS
+### Lighthouse Reports
+Report | Score | Summary  
+--- | --- | ---
+Mobile | screen grab of test | - Used [Lighthouse](https://web.dev/measure/) to confirm that the colors and fonts being used in throughout the website are easy to read and accessible. <br> - Was also used to test that the page loads correctly without delay to ensure a positive user experience.
+Desktop | screen grab of test | - Used [Lighthouse](https://web.dev/measure/) to confirm that the colors and fonts being used in throughout the website are easy to read and accessible. <br> - Was also used to test that the page loads correctly without delay to ensure a positive user experience.
 
-![Base JS](docs/testing/base_js.JPG)
 
-### HTML
+### Common Elements Testing 
+- General
 
-The following Validated with no errors:
+Feature | Outcome | Pass/Fail
+--- | --- | ---
+Heading | CSS styles work as expected on each page | Pass
+Buttons | Operate as expected | Pass
+
 - Home Page
-- 
 
-![Success](docs/testing/html_validator.JPG)
+Feature | Outcome | Pass/Fail
+--- | --- | ---
+Play Button | Navigates to Game Screen | Pass
+Rules Button | Activates Rules Pop-Up Function | Pass
+Rules Close Button | Closes Pop-Up as expected | Pass
+Feedback Button | Navigates to Feedback Section as expected | Pass
 
-The Following Validator with the same error:
-- The something page
+- Error 404 Page
 
-![Error](docs/testing/edit_gift_add.JPG)
+Feature | Outcome | Pass/Fail
+--- | --- | ---
+404 Error Page | Entering an incorrect address brings the player to the 404 error page | Pass
+Back to Game Button | Brings user to Home Page when clicked | Pass
+
+## Bugs: 
+### Fixed Bugs:
+Bug | Image | Notes 
+--- | --- | ---
+Description | Images of issue | - Cause <br> -Solution 
+
+
+### Unfixed Bugs: 
+Bug | Image | Notes 
+--- | --- | --- 
+Description | Images of issue | - Cause <br> -Solution  
+
+## Future Features:
+- Some Features I would like to add in the future include: 
+    - 
 
 
 [Back to content](#contents)
