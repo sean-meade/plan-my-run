@@ -473,7 +473,7 @@ git clone link-to-repo
 
 ### Images
 
-* 
+* The hero image was gotten from [Pixabay](https://pixabay.com/photos/road-highway-journey-asphalt-5089188/)
 * Rain drop icon from weather is from [Iconfinder](https://www.iconfinder.com/)
 
 ### Image editing

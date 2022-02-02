@@ -270,12 +270,6 @@ footer a {
   }
 }
 
-/* @media only screen and (max-width: 653px) {
-  #input-lower {
-    margin-top: 1rem;
-  }
-} */
-
 @media only screen and (max-width: 660px) {
   .output {
     justify-content: center;
