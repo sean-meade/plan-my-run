@@ -157,6 +157,7 @@ function setStartMarker(click) {
  */
 document.getElementById("use-current-location").onclick = function () {
   resetRoute();
+  document.getElementById("undo").disabled = false;
   navigator.geolocation.getCurrentPosition(
     setStartMarker,
     errorCurrentLocation,

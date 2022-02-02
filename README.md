@@ -379,9 +379,7 @@ iPhone SE| No appearance, responsiveness nor functionality issues. | Pass
 
 - [Html Validator](https://validator.w3.org/nu/) found no errors or warnings in my HTML.
 
-- [JSHint](https://jshint.com/) found the following but an explanation comes with each
-
-  - 
+- [JSHint](https://jshint.com/) found the undefined variables (which are defined from outside that particular js either imported with a script or in another js file I have written)
 
 Code | Page | Score  
 --- | --- | --- 
@@ -396,8 +394,8 @@ JavaScript| weather.js | ![weather.js Validation](docs/images/testing/jshint-wea
 ### Lighthouse Reports
 Report | Score | Summary  
 --- | --- | ---
-Mobile | screen grab of test | - Used [Lighthouse](https://web.dev/measure/) to confirm that the colors and fonts being used in throughout the website are easy to read and accessible. <br> - Was also used to test that the page loads correctly without delay to ensure a positive user experience.
-Desktop | screen grab of test | - Used [Lighthouse](https://web.dev/measure/) to confirm that the colors and fonts being used in throughout the website are easy to read and accessible. <br> - Was also used to test that the page loads correctly without delay to ensure a positive user experience.
+Mobile | ![Lighthouse Scores for Mobile](docs/images/testing/lighthouse-mobile.png "Lighthouse Scores for Mobile") | - Used [Lighthouse](https://web.dev/measure/) to confirm that the colors and fonts being used in throughout the website are easy to read and accessible. <br> - Was also used to test that the page loads correctly without delay to ensure a positive user experience.
+Desktop | ![Lighthouse Scores for Desktop](docs/images/testing/lighthouse-desktop.png "Lighthouse Scores for Desktop") | - Used [Lighthouse](https://web.dev/measure/) to confirm that the colors and fonts being used in throughout the website are easy to read and accessible. <br> - Was also used to test that the page loads correctly without delay to ensure a positive user experience.
 
 <br>
 
@@ -413,10 +411,16 @@ Buttons | Operate as expected | Pass
 
 Feature | Outcome | Pass/Fail
 --- | --- | ---
-Play Button | Navigates to Game Screen | Pass
-Rules Button | Activates Rules Pop-Up Function | Pass
-Rules Close Button | Closes Pop-Up as expected | Pass
-Feedback Button | Navigates to Feedback Section as expected | Pass
+Search Location Field | Searches locations and sets center of map | Pass
+Start Where I am Button | Sets current location as starting point | Pass
+Map click | Sets starting point on first click and then way points and route | Pass
+Looped Route Checkbox | completes a route back to the starting point | Pass
+Undo Button | Removes a waypoint and that section of route. Updates waypoints left and distance | Pass
+Reset Route Button | Removes everything from the map and allows user start again | Pass
+Route distance output | returns distance of current route | Pass
+Waypoints left output | returns waypoints left to use of current route | Pass
+Weather input day and time | takes in a day and time from user | Pass
+Get Weather Info | Shows user relevant weather data for given location, day and time | Pass
 
 
 ## Bugs: 
@@ -499,7 +503,9 @@ git clone link-to-repo
 
 ## Acknowledgements
 
-Site creators:
+My Code Institute Mentor
+
+Site creator:
 
 [Sean Meade](https://github.com/sean-meade)
 
