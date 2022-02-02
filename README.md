@@ -416,12 +416,6 @@ Rules Button | Activates Rules Pop-Up Function | Pass
 Rules Close Button | Closes Pop-Up as expected | Pass
 Feedback Button | Navigates to Feedback Section as expected | Pass
 
-- Error 404 Page
-
-Feature | Outcome | Pass/Fail
---- | --- | ---
-404 Error Page | Entering an incorrect address brings the player to the 404 error page | Pass
-Back to Game Button | Brings user to Home Page when clicked | Pass
 
 ## Bugs: 
 ### Fixed Bugs:
