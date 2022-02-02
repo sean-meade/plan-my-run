@@ -1,23 +1,13 @@
 // https://getbootstrap.com/docs/5.1/components/alerts/
 
-// var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
-// var alertTrigger = document.getElementById('use-current-location')
-
-
 /**
+ * A function that when called creates an alert with a message on a colour background
  * 
- * @param {*} message = text displayed in alert
- * @param {*} type = type of alert
- * @param {*} alertPlaceholder = div above button pressed
+ * @param {String} message = text displayed in alert
+ * @param {String} type = type of alert (decides colour of background)
+ * @param {String} alertPlaceholder = div to place the alert in
  */
 function alert(message, type, alertPlaceholder) {
   var alertPlaceholderDiv = document.getElementById(alertPlaceholder);
   alertPlaceholderDiv.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-  // alertPlaceholder.append(wrapper)
 }
-
-// if (alertTrigger) {
-//   alertTrigger.addEventListener('click', function () {
-//     alert('Nice, you triggered this alert message!', 'success')
-//   })
-// }

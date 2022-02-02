@@ -487,6 +487,8 @@ git clone link-to-repo
 
 * Loading screen adapted from Section 6 of the [50 Projects In 50 Days](https://www.udemy.com/course/50-projects-50-days/) course on Udemy.com by Brad Traversy 
 
+* Alerts were created using [Bootstrap Alerts](https://getbootstrap.com/docs/5.1/components/alerts/)
+
 [Back to content](#contents)
 
 ---
