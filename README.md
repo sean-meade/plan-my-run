@@ -385,13 +385,13 @@ iPhone SE| No appearance, responsiveness nor functionality issues. | Pass
 
 Code | Page | Score  
 --- | --- | --- 
-CSS | Site Wide | screen grab of tests
-HTML | Home Page | 
-JavaScript| route.js | 
-JavaScript| live-alert.js | 
-JavaScript| loading-screen.js | 
-JavaScript| weather-input.js | 
-JavaScript| weather.js | 
+CSS | Site Wide | ![CSS Validation](docs/images/testing/css-validation.png "CSS Validation")
+HTML | Home Page | ![HTML Validation](docs/images/testing/html-validation.png "HTML Validation")
+JavaScript| route.js | ![route.js Validation](docs/images/testing/jshint-route.png "route.js Validation")
+JavaScript| live-alert.js | ![live-alert.js Validation](docs/images/testing/jshint-live-alert.png "live-alert.js Validation")
+JavaScript| loading-screen.js | No errors or warnings
+JavaScript| weather-input.js | No errors or warnings
+JavaScript| weather.js | ![weather.js Validation](docs/images/testing/jshint-weather.png "weather.js Validation")
 
 ### Lighthouse Reports
 Report | Score | Summary  
@@ -399,6 +399,7 @@ Report | Score | Summary
 Mobile | screen grab of test | - Used [Lighthouse](https://web.dev/measure/) to confirm that the colors and fonts being used in throughout the website are easy to read and accessible. <br> - Was also used to test that the page loads correctly without delay to ensure a positive user experience.
 Desktop | screen grab of test | - Used [Lighthouse](https://web.dev/measure/) to confirm that the colors and fonts being used in throughout the website are easy to read and accessible. <br> - Was also used to test that the page loads correctly without delay to ensure a positive user experience.
 
+<br>
 
 ### Common Elements Testing 
 - General
@@ -481,7 +482,6 @@ git clone link-to-repo
 * Image editing was done with [LunaPic](https://www4.lunapic.com/editor/)
 * Darkened the hero image with [Pinetools](https://pinetools.com/darken-image)
 * Converted all images to webp with [Convertio](https://convertio.co/)
-
 
 ### Code ideas
 
