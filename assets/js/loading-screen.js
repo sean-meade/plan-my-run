@@ -8,7 +8,7 @@ let int = setInterval(blurring, 15);
 
 /**
  * A function that blurs the background image and increments the loading percentage
- * the on completion sets them both to display none
+ * evenly with each other, and on completion sets them both to display none
  */
 function blurring() {
   load++;
@@ -35,8 +35,3 @@ if (history.scrollRestoration) {
       window.scrollTo(0, 0);
   }
 }
-
-// // delete these and uncomment above before final submit
-// loadText.style.display = "none";
-// bg.style.display = "none";
-// document.body.style.overflow = "visible";
