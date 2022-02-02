@@ -1,7 +1,7 @@
 let weatherAPIkEY = "5fc8e9bc79a5a2e82d9c4120d41402cd";
 
 /**
- * Function taht returns an array with day, hour, and, month (as ints) of the ith element in weather array
+ * Function that returns an array with day, hour, and, month (as ints) of the ith element in weather array
  *
  * @param {number} i ranging from 0 to the length of weather data list (weatherData.list.length)
  * @returns {Array} containing day, hour, and, month as ints
@@ -18,7 +18,7 @@ function getDayHourMonth(weatherData, i) {
  * A function that processes the weather data requested from api by using the users day, hour and month input
  * and returns the relevant weather data.
  *
- * @param {object} weatherData object return from a request to weatherapi.com api
+ * @param {object} weatherData object return from a request to weatherAPI.com api
  * @param {int} hour integer representing the hour of day
  * @param {int} day integer representing the day of the month
  * @param {int} month integer representing the month of the year
@@ -63,7 +63,7 @@ function getRelevantWeatherData(weatherData, hour, day, month) {
  *
  * @param {Array} latLon an array containing two floats with a max 6 decimal
  *                        places representing latitude and longitude
- * @param {String} weatherAPIkEY string containing weather API key from weatherapi.com
+ * @param {String} weatherAPIkEY string containing weather API key from weatherAPI.com
  */
 async function weatherAPIRequest(latLon, weatherAPIkEY, hour, day, month) {
   $.ajax({
@@ -124,7 +124,7 @@ async function weatherAPIRequest(latLon, weatherAPIkEY, hour, day, month) {
  */
 document.getElementById("get-weather").onclick = function () {
   let weatherTime = document.getElementById("weather-input-time").value;
-  // https://stackoverflow.com/questions/9133102/how-to-grab-substring-before-a-specified-character-jquery-or-javascript
+
   let weatherDay = document
     .getElementById("weather-input-day")
     .value.split(",");

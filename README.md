@@ -489,6 +489,10 @@ git clone link-to-repo
 
 * Alerts were created using [Bootstrap Alerts](https://getbootstrap.com/docs/5.1/components/alerts/)
 
+* The [Generate an optimized route](https://docs.mapbox.com/help/tutorials/optimization-api/) and [Add a geocoder](https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder/) examples on Mapbox along with the [documentation](https://docs.mapbox.com/) (as well as a **lot** of trial and error) were used to create the route and it's functionality.
+
+* From Stackoverflow I adapted this [answer](https://stackoverflow.com/questions/8674618/adding-options-to-select-with-javascript/8674667) by David Thomas and [this answer](https://stackoverflow.com/questions/563406/add-days-to-javascript-date) by AnthonyWJones to create the weather options.
+
 [Back to content](#contents)
 
 ---
