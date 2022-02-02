@@ -379,8 +379,9 @@ iPhone SE| No appearance, responsiveness nor functionality issues. | Pass
 
 - [Html Validator](https://validator.w3.org/nu/) found no errors or warnings in my HTML.
 
-- [JSHint](https://jshint.com/) found the following but an explaination comes with each:
-	-  
+- [JSHint](https://jshint.com/) found the following but an explanation comes with each
+
+  - 
 
 Code | Page | Score  
 --- | --- | --- 
