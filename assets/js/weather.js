@@ -27,7 +27,7 @@ function getDayHourMonth(weatherData, i) {
 function getRelevantWeatherData(weatherData, hour, day, month) {
   for (let i = 0; i < weatherData.list.length - 1; i++) {
     let [dayi, houri, monthi] = getDayHourMonth(weatherData, i);
-    
+
     let mostRecentWeatherHour = parseInt(
       weatherData.list[0].dt_txt.substring(10, 13)
     );
@@ -58,14 +58,14 @@ function getRelevantWeatherData(weatherData, hour, day, month) {
 }
 
 /**
- * A function that request weather information for a lat and long and then processes it with 
+ * A function that request weather information for a lat and long and then processes it with
  * the hour and day input by user to display relevant weather info to the html page
  *
  * @param {Array} latLon an array containing two floats with a max 6 decimal
  *                        places representing latitude and longitude
  * @param {String} weatherAPIkEY string containing weather API key from weatherapi.com
  */
- async function weatherAPIRequest(latLon, weatherAPIkEY, hour, day, month) {
+async function weatherAPIRequest(latLon, weatherAPIkEY, hour, day, month) {
   $.ajax({
     method: "GET",
     url: `https://api.openweathermap.org/data/2.5/forecast?lat=${latLon[0]}&lon=${latLon[1]}&units=metric&appid=${weatherAPIkEY}`,
@@ -78,13 +78,16 @@ function getRelevantWeatherData(weatherData, hour, day, month) {
         month
       );
 
-        console.log(relWeatherData.weather[0]);
+      console.log(relWeatherData.weather[0]);
       // For icon solution: https://stackoverflow.com/questions/44177417/how-to-display-openweathermap-weather-icon
-      document.getElementById("weather-output").innerHTML = 
-        `<div id="weather-info">
+      document.getElementById(
+        "weather-output"
+      ).innerHTML = `<div id="weather-info">
           <img src="https://openweathermap.org/img/w/${
             relWeatherData.weather[0].icon
-          }.png" alt="${relWeatherData.weather[0].description} icon" title="${relWeatherData.weather[0].description}"> 
+          }.png" alt="${relWeatherData.weather[0].description} icon" title="${
+        relWeatherData.weather[0].description
+      }"> 
           <div class="weather-item"><span>|</span> ${
             relWeatherData.main.temp
           } &deg;C</div>
@@ -137,11 +140,7 @@ document.getElementById("get-weather").onclick = function () {
     !weatherDay ||
     (hour <= today.getHours() && day == today.getDate())
   ) {
-    alert(
-      "Please choose a time in the future",
-      "warning",
-      "weather-output"
-    );
+    alert("Please choose a time in the future", "warning", "weather-output");
   } else if (clickRoute[0]) {
     let latLon = [clickRoute[0][1], clickRoute[0][0]];
     // make request for allWeatherData with latLon and day
