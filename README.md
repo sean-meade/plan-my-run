@@ -1,8 +1,8 @@
 # Plan My Run
 
-[Plan My Run](https://sean-meade.github.io/plan-my-run/) is a website which allows runners to plan a run. It gives them the ability to choose a location, time, day, and then to map out their route with mouse clicks. The running will recieve back weather information for the time and day, and a distance update on each click of the route they are planning.  
+[Plan My Run](https://sean-meade.github.io/plan-my-run/) is a website which allows runners to plan a run. It gives them the ability to choose a starting location, time, day, and then to map out their route with mouse clicks or finger taps. The running will receive weather information for the time and day, and a distance update on each click of the route they are planning.  
 
-The longer the run the more difficult it gets. You have to make sure you plan your route so you run long enough distances to continue to progress. You can run the same shorter distance multiple times to make it up but speaking from experience will drive you crazy. It is important to know how far you must run before going out.
+The longer the run the more difficult it gets. You have to make sure you plan your route so you run long enough distances to continue to progress. You can run the same shorter distance multiple times to make it up but speaking from experience this will drive you crazy. It is important to know how far you must run before going out and to make those runs as diverse as possible.
 
 ![Site display on different screens](docs/images/amiresponsive.png "Image showing website on multiple platforms")
 
@@ -29,12 +29,23 @@ The longer the run the more difficult it gets. You have to make sure you plan yo
   - [Technologies](#technologies)
     - [Languages](#languages)
     - [Libraries & Frameworks](#libraries--frameworks)
+    - [APIs](#apis)
     - [Tools](#tools)
   - [Features](#features)
     - [Implemented Features](#implemented-features)
-    - [Future Features](#future-features)
+    - [Functional Features](#functional-features)
+    - [Alert Features](#alert-features)
   - [Changes applied since planning](#changes-applied-since-planning)
   - [Testing](#testing)
+    - [User Stories Testing](#user-stories-testing)
+    - [Manual Testing](#manual-testing)
+    - [Code Validation](#code-validation)
+    - [Lighthouse Reports](#lighthouse-reports)
+    - [Common Elements Testing](#common-elements-testing)
+    - [Future Features](#future-features)
+  - [Bugs](#bugs)
+    - [Fixed Bugs](#fixed-bugs)
+    - [Unfixed Bugs](#unfixed-bugs)
   - [Deployment](#deployment)
     - [Local Deployment](#local-deployment)
     - [Deployment to Github](#deployment-to-)
@@ -61,8 +72,8 @@ The main goal of this project is to provide an app that helps runners plan their
 ### Site Visitor/User Goals
 
 - Ability to choose what location to start the run in.
-- Ability to choose the day and time for a run and with the location recieve weather information.
-- Ability to use the mouse to map out a running route and recieve the distance of the route in return.
+- Ability to choose the day and time for a run and with the location receive weather information.
+- Ability to use the mouse to map out a running route and receive the distance of the route in return.
 
 ### User Stories
 
@@ -250,7 +261,7 @@ This button allows the user to then send the request for the weather information
 ![Get Weather Button](docs/images/button-get-weather.png "Get Weather Button")
 
 #### __Weather Information Display__
-The weather output then provides the description of the weather in the form of an iamge (hovering over the image will give the description in text), the median, max and min temperature, the chance of rain, the wind speed, and the wind direction.
+The weather output then provides the description of the weather in the form of an image (hovering over the image will give the description in text), the median, max and min temperature, the chance of rain, the wind speed, and the wind direction.
 
 ![Weather Information Display](docs/images/weather-output.png "Weather Information Display")
 
@@ -334,7 +345,7 @@ Text has also been provided to inform the user along with alerts for errors.
 	- With a starting point selected, and a day and time (in the future) chosen and by clicking the 'Get Weather Info' button can get the relevant weather information.
 
 - As a user, I am able to change the day and time and update the weather information.
-	- At any time time the user can slecet a new day and time (again in the future) and by clicking the 'Get Weather Info' button can get the relevant weather information.
+	- At any time time the user can select a new day and time (again in the future) and by clicking the 'Get Weather Info' button can get the relevant weather information.
 
 - As a user, I am able to use the mouse to map out a running route and receive the distance of the route in return.
 	- The user can click on the map to create waypoints to map out a route. The distance is then updated automatically.
@@ -352,7 +363,7 @@ Text has also been provided to inform the user along with alerts for errors.
 	- All information is plain to see including any alerts activated by the user. A link to the creators Github is in the Footer.
 
 ### Manual Testing 
-* Browser Compatability
+* Browser Compatibility
 
 Browser | Outcome | Pass/Fail  
 ---|---|---
@@ -518,11 +529,8 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 ### Code ideas
 
 * Loading screen adapted from Section 6 of the [50 Projects In 50 Days](https://www.udemy.com/course/50-projects-50-days/) course on Udemy.com by Brad Traversy 
-
 * Alerts were created using [Bootstrap Alerts](https://getbootstrap.com/docs/5.1/components/alerts/)
-
 * The [Generate an optimized route](https://docs.mapbox.com/help/tutorials/optimization-api/) and [Add a geocoder](https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder/) examples on Mapbox along with the [documentation](https://docs.mapbox.com/) (as well as a **lot** of trial and error) were used to create the route and it's functionality.
-
 * From Stackoverflow I adapted this [answer](https://stackoverflow.com/questions/8674618/adding-options-to-select-with-javascript/8674667) by David Thomas and [this answer](https://stackoverflow.com/questions/563406/add-days-to-javascript-date) by AnthonyWJones to create the weather options.
 
 [Back to content](#contents)
