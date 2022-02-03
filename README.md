@@ -433,7 +433,8 @@ Description | Images of issue | - Cause <br> -Solution
 ### Unfixed Bugs: 
 Bug | Image | Notes 
 --- | --- | --- 
-Description | Images of issue | - Cause <br> -Solution  
+Two of the same errors show blocking a Mapbox link | ![Error from ad blocker](docs/images/error-from-add-blocker.png "Error from ad blocker") | - The ad blocker picks up on the word 'event' in the url and tries to block it<br> - This does not effect the functionality of the web app however you can turn off your add blocker and the errors go away
+On reload the following warning about permission-policy appears | ![Error from ad blocker](docs/images/warning-permission-policy.png "Error from ad blocker") | - Github have changed their policy and GitHub hosted pages disable FLoC which has to deal with cookies <br> - Ignore as functionality is not effected and would need to find alternative hosting method to remove
 
 ## Future Features:
 - Some Features I would like to add in the future include: 
@@ -446,25 +447,47 @@ Description | Images of issue | - Cause <br> -Solution
 
 ## Deployment
 
-**NAME** project was deployed using the **VS Code IDE**, using **Git** and **GitHub**.
+The site was deployed to GitHub pages. The steps to deploy are as follows:
+1.	In the repository navigate to the settings tab.
+2.	Select Pages from the navigation on the left hand side.
+3.	Select main (sometimes called master) branch, the root (meaning the root directory of your repo) and then save.
+You will then be presented with a link to your hosted repository located right above the Source settings you just saved.
 
-Before deploying the application, install the following:
+![Steps to host a website with Github Pages](docs/images/github-deployment-steps.jpg)
 
-- Git
+### Forking the GitHub Repository
 
-### Local Deployment
+By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
 
-To deploy Art-ial locally, take the following steps:
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/)
+2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
+3. You should now have a copy of the original repository in your GitHub account.
 
-1. From the applications [repository](link-to-repo), click the *code* button and download the zip file.
+### Making a Local Clone
 
-    Alternatively, you can clone the repository using the following line in your terminal:
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/)
+2. Under the repository name, click "Clone or download".
+3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+4. Open Git Bash
+5. Change the current working directory to the location where you want the cloned directory to be made.
+6. Type `git clone`, and then paste the URL you copied in Step 3.
 
-```terminal
-git clone link-to-repo
+```
+$ git clone https://github.com/sean-meade/plan-my-run.git
 ```
 
-2. Access the folder in your terminal window 
+7. Press Enter. Your local clone will be created.
+
+```
+$ git clone https://github.com/sean-meade/plan-my-run.git
+> Cloning into `CI-Clone`...
+> remote: Counting objects: 10, done.
+> remote: Compressing objects: 100% (8/8), done.
+> remove: Total 10 (delta 1), reused 10 (delta 1)
+> Unpacking objects: 100% (10/10), done.
+```
+
+Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to retrieve pictures for some of the buttons and more detailed explanations of the above process. 
 
 [Back to content](#contents)
 
