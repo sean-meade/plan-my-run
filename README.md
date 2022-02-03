@@ -428,14 +428,18 @@ Get Weather Info | Shows user relevant weather data for given location, day and 
 Bug | Image | Notes 
 --- | --- | ---
 When time chosen for weather information was in the past an error of undefined would appear | ![Error from ad blocker](docs/images/error-for-weather-request.png "Error from ad blocker") | - The request for the weather information was returning as a 404 and did't contain weather information <br> - Created a check for the input tim and day and call the alert before the request is even made
+When more then 24 waypoints (clicks) are used to make a route the following error appears in the console | ![Error from too many waypoints](docs/images/error-for-too-many-waypoints.png "Error from too many waypoints") | - The request to Mapbox directions API can only take 24 pairs of latitude and longitude when requesting a route. <br> - Limited the number of waypoints and return an alert if the limit is reached.
+When Undo button used on looped route with only 2 waypoints the looped route stays checked but it turns disabled. | ![Looped Route staying checked](docs/images/looped-route-staying-checked.png "Looped Route staying checked") | - There are different functions called when resetting, undoing, or changing location. All of which you could have the button stay checked but turn disabled. <br> - Added `document.getElementById('looped-route').checked = false;` to all of them
+
  
 
 
 ### Unfixed Bugs: 
 Bug | Image | Notes 
 --- | --- | --- 
-Two of the same errors show blocking a Mapbox link | ![Error from ad blocker](docs/images/error-from-add-blocker.png "Error from ad blocker") | - The ad blocker picks up on the word 'event' in the url and tries to block it<br> - This does not effect the functionality of the web app however you can turn off your add blocker and the errors go away
+Two of the same errors show blocking of a Mapbox request | ![Error from ad blocker](docs/images/error-from-add-blocker.png "Error from ad blocker") | - The ad blocker picks up on the word 'event' in the url and tries to block it<br> - This does not effect the functionality of the web app however you can turn off your add blocker and the errors go away
 On reload the following warning about permission-policy appears | ![Error from ad blocker](docs/images/warning-permission-policy.png "Error from ad blocker") | - Github have changed their policy and GitHub hosted pages disable FLoC which has to deal with cookies <br> - Ignore as functionality is not effected and would need to find alternative hosting method to remove
+
 
 ## Future Features:
 - Some Features I would like to add in the future include: 
