@@ -454,8 +454,9 @@ On reload the following warning about permission-policy appears | ![Error from a
 
 ## Future Features:
 - Some Features I would like to add in the future include: 
-    - 
-
+    - I'd love to get a more comprehensive weather API and do more then 4 days of weather.
+    - A buffer for when the weather information is loading.
+    - Improve performance on mobile maybe by using local versions of the imported js and striping it back to what I need.
 
 [Back to content](#contents)
 
