@@ -508,10 +508,6 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 [Back to content](#contents)
 
-### Deployment to 
-
-[Back to content](#contents)
-
 ---
 
 ## Credits
