@@ -427,7 +427,8 @@ Get Weather Info | Shows user relevant weather data for given location, day and 
 ### Fixed Bugs:
 Bug | Image | Notes 
 --- | --- | ---
-Description | Images of issue | - Cause <br> -Solution 
+When time chosen for weather information was in the past an error of undefined would appear | ![Error from ad blocker](docs/images/error-for-weather-request.png "Error from ad blocker") | - The request for the weather information was returning as a 404 and did't contain weather information <br> - Created a check for the input tim and day and call the alert before the request is even made
+ 
 
 
 ### Unfixed Bugs: 
